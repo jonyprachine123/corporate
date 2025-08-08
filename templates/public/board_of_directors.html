@@ -1,0 +1,240 @@
+{% extends "layout.html" %}
+{% block title %}Board of Directors | Prachin Bangla Limited{% endblock %}
+{% block content %}
+<!-- Hero Section -->
+<div class="bg-gradient-to-br from-blue-50 to-indigo-100 py-20 gradient-animate">
+    <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-5xl font-bold text-gray-900 mb-6 fade-in-up">Board of Directors</h1>
+            <p class="text-xl text-gray-600 leading-relaxed fade-in-up stagger-2">
+                Meet our distinguished board members who provide strategic guidance and governance oversight.
+            </p>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Board Members Grid -->
+<div class="py-20">
+    <div class="container mx-auto px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Our Leadership Team</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Our board comprises experienced professionals from diverse backgrounds, bringing valuable expertise to guide our strategic direction.
+                </p>
+            </div>
+            
+            <!-- Board Members Cards -->
+            <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-8">
+                <!-- Chairman Card -->
+                <div class="bg-white rounded-xl shadow-lg card-hover fade-in-up stagger-1 overflow-hidden">
+                    <div class="p-8 text-center">
+                        <div class="w-32 h-32 bg-gradient-to-br from-purple-100 to-indigo-200 rounded-full flex items-center justify-center mx-auto mb-6 scale-in float">
+                            <svg class="w-16 h-16 text-purple-400" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Mr. [Chairman Name]</h3>
+                        <p class="text-purple-600 font-semibold mb-4">Chairman</p>
+                        <p class="text-gray-600 text-sm mb-4">25+ years of corporate leadership experience with expertise in strategic planning and governance.</p>
+                        <div class="flex justify-center space-x-2">
+                            <span class="px-3 py-1 bg-purple-100 text-purple-600 text-xs rounded-full">Strategy</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-600 text-xs rounded-full">Governance</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Independent Director 1 -->
+                <div class="bg-white rounded-xl shadow-lg card-hover fade-in-up stagger-2 overflow-hidden">
+                    <div class="p-8 text-center">
+                        <div class="w-32 h-32 bg-gradient-to-br from-blue-100 to-cyan-200 rounded-full flex items-center justify-center mx-auto mb-6 scale-in float">
+                            <svg class="w-16 h-16 text-blue-400" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Ms. [Director Name]</h3>
+                        <p class="text-blue-600 font-semibold mb-4">Independent Director</p>
+                        <p class="text-gray-600 text-sm mb-4">Former CFO with extensive experience in financial management and risk assessment.</p>
+                        <div class="flex justify-center space-x-2">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-600 text-xs rounded-full">Finance</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-600 text-xs rounded-full">Risk Management</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Independent Director 2 -->
+                <div class="bg-white rounded-xl shadow-lg card-hover fade-in-up stagger-3 overflow-hidden">
+                    <div class="p-8 text-center">
+                        <div class="w-32 h-32 bg-gradient-to-br from-green-100 to-emerald-200 rounded-full flex items-center justify-center mx-auto mb-6 scale-in float">
+                            <svg class="w-16 h-16 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Dr. [Director Name]</h3>
+                        <p class="text-green-600 font-semibold mb-4">Independent Director</p>
+                        <p class="text-gray-600 text-sm mb-4">Technology expert and former university professor with deep knowledge in digital innovation.</p>
+                        <div class="flex justify-center space-x-2">
+                            <span class="px-3 py-1 bg-green-100 text-green-600 text-xs rounded-full">Technology</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-600 text-xs rounded-full">Innovation</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Executive Director -->
+                <div class="bg-white rounded-xl shadow-lg card-hover fade-in-up stagger-4 overflow-hidden">
+                    <div class="p-8 text-center">
+                        <div class="w-32 h-32 bg-gradient-to-br from-orange-100 to-red-200 rounded-full flex items-center justify-center mx-auto mb-6 scale-in float">
+                            <svg class="w-16 h-16 text-orange-400" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Mr. [Director Name]</h3>
+                        <p class="text-orange-600 font-semibold mb-4">Executive Director</p>
+                        <p class="text-gray-600 text-sm mb-4">Operations specialist with proven track record in business development and market expansion.</p>
+                        <div class="flex justify-center space-x-2">
+                            <span class="px-3 py-1 bg-orange-100 text-orange-600 text-xs rounded-full">Operations</span>
+                            <span class="px-3 py-1 bg-orange-100 text-orange-600 text-xs rounded-full">Business Dev</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Non-Executive Director -->
+                <div class="bg-white rounded-xl shadow-lg card-hover fade-in-up stagger-5 overflow-hidden">
+                    <div class="p-8 text-center">
+                        <div class="w-32 h-32 bg-gradient-to-br from-indigo-100 to-purple-200 rounded-full flex items-center justify-center mx-auto mb-6 scale-in float">
+                            <svg class="w-16 h-16 text-indigo-400" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Ms. [Director Name]</h3>
+                        <p class="text-indigo-600 font-semibold mb-4">Non-Executive Director</p>
+                        <p class="text-gray-600 text-sm mb-4">Legal expert and corporate governance specialist with extensive regulatory knowledge.</p>
+                        <div class="flex justify-center space-x-2">
+                            <span class="px-3 py-1 bg-indigo-100 text-indigo-600 text-xs rounded-full">Legal</span>
+                            <span class="px-3 py-1 bg-indigo-100 text-indigo-600 text-xs rounded-full">Compliance</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Company Secretary -->
+                <div class="bg-white rounded-xl shadow-lg card-hover fade-in-up stagger-6 overflow-hidden">
+                    <div class="p-8 text-center">
+                        <div class="w-32 h-32 bg-gradient-to-br from-teal-100 to-cyan-200 rounded-full flex items-center justify-center mx-auto mb-6 scale-in float">
+                            <svg class="w-16 h-16 text-teal-400" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Mr. [Secretary Name]</h3>
+                        <p class="text-teal-600 font-semibold mb-4">Company Secretary</p>
+                        <p class="text-gray-600 text-sm mb-4">Chartered Secretary with expertise in corporate governance and regulatory compliance.</p>
+                        <div class="flex justify-center space-x-2">
+                            <span class="px-3 py-1 bg-teal-100 text-teal-600 text-xs rounded-full">Governance</span>
+                            <span class="px-3 py-1 bg-teal-100 text-teal-600 text-xs rounded-full">Compliance</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Board Committees -->
+<div class="bg-gray-50 py-20">
+    <div class="container mx-auto px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Board Committees</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Our specialized committees ensure focused oversight and governance in key areas.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Audit Committee -->
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Audit Committee</h3>
+                    <p class="text-gray-600 mb-4">Oversees financial reporting, internal controls, and external audit processes.</p>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li>• Financial statement review</li>
+                        <li>• Risk management oversight</li>
+                        <li>• Internal audit supervision</li>
+                        <li>• Compliance monitoring</li>
+                    </ul>
+                </div>
+                
+                <!-- Nomination Committee -->
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <div class="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Nomination Committee</h3>
+                    <p class="text-gray-600 mb-4">Responsible for board composition and executive appointments.</p>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li>• Board member selection</li>
+                        <li>• Skills assessment</li>
+                        <li>• Succession planning</li>
+                        <li>• Performance evaluation</li>
+                    </ul>
+                </div>
+                
+                <!-- Remuneration Committee -->
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <div class="w-16 h-16 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Remuneration Committee</h3>
+                    <p class="text-gray-600 mb-4">Determines compensation policies and executive remuneration.</p>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li>• Compensation strategy</li>
+                        <li>• Performance incentives</li>
+                        <li>• Benefits administration</li>
+                        <li>• Market benchmarking</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Governance Principles -->
+<div class="py-20">
+    <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl font-bold text-gray-900 mb-8">Our Governance Principles</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-100 p-6 sm:p-8 rounded-xl">
+                    <div class="w-12 h-12 sm:w-16 sm:h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                        <svg class="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Transparency & Accountability</h3>
+                    <p class="text-gray-600">We maintain open communication with stakeholders and ensure accountability in all our decisions and actions.</p>
+                </div>
+                
+                <div class="bg-gradient-to-br from-green-50 to-emerald-100 p-8 rounded-xl">
+                    <div class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Ethical Leadership</h3>
+                    <p class="text-gray-600">Our board demonstrates the highest ethical standards and promotes a culture of integrity throughout the organization.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

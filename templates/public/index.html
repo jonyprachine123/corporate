@@ -1,0 +1,231 @@
+{% extends "layout.html" %}
+{% block title %}Home | Prachin Bangla Limited{% endblock %}
+{% block content %}
+<!-- Gallery Slider Section - Full Width at Top -->
+<div class="w-full fade-in-up">
+    {% if gallery_images %}
+    <div class="slider-container relative h-[250px] sm:h-[300px] md:h-[400px] lg:h-[500px] xl:h-[600px] rounded-lg overflow-hidden shadow-lg" id="slider">
+        {% for image in gallery_images %}
+        <div class="slide{% if loop.first %} active{% endif %}" id="slide-{{ loop.index0 }}">
+            <img src="{{ url_for('static', filename='uploads/' + image.filename) }}" 
+                 alt="{{ image.title }}" 
+                 class="w-full h-full object-cover">
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 sm:p-6 md:p-8">
+                <div class="max-w-4xl mx-auto">
+                    <h3 class="text-white text-lg sm:text-xl md:text-2xl font-bold mb-2 drop-shadow-lg">{{ image.title }}</h3>
+                    <div class="w-12 sm:w-16 h-1 bg-blue-400 rounded"></div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        
+        <!-- Navigation Arrows -->
+        {% if gallery_images|length > 1 %}
+        <button class="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-2 sm:p-3 rounded-full transition duration-300 scale-in btn-animate z-20 touch-manipulation" onclick="previousSlide()">
+            <svg class="w-4 h-4 sm:w-6 sm:h-6 icon-rotate" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+        </button>
+        <button class="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-2 sm:p-3 rounded-full transition duration-300 scale-in btn-animate z-20 touch-manipulation" onclick="nextSlide()">
+            <svg class="w-4 h-4 sm:w-6 sm:h-6 icon-rotate" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+        </button>
+        
+        <!-- Dots Indicator -->
+        <div class="absolute bottom-2 sm:bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-1 sm:space-x-2 fade-in-up stagger-3 z-20">
+            {% for image in gallery_images %}
+            <button class="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-white/50 hover:bg-white/80 transition duration-300 {{ 'bg-white' if loop.first else '' }} pulse touch-manipulation" 
+                    onclick="goToSlide({{ loop.index0 }})" 
+                    id="dot-{{ loop.index0 }}"></button>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+    {% else %}
+    <div class="bg-gray-200 h-[250px] sm:h-[300px] md:h-[400px] lg:h-[500px] xl:h-[600px] flex flex-col justify-center items-center text-center fade-in-up rounded-lg">
+        <svg class="w-16 h-16 text-gray-400 mx-auto mb-4 scale-in icon-rotate" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+        </svg>
+        <p class="text-gray-500 fade-in-up stagger-2">No gallery images available</p>
+    </div>
+    {% endif %}
+</div>
+
+<!-- Hero Section -->
+<section class="bg-gradient-to-br from-blue-50 to-indigo-100 py-12 sm:py-16 lg:py-20 gradient-animate">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 fade-in-up leading-tight">Building a Better Tomorrow</h1>
+        <p class="text-lg sm:text-xl text-gray-600 mb-6 sm:mb-8 max-w-3xl mx-auto fade-in-up stagger-2 px-4">
+            Our vision is to create sustainable solutions that empower communities and drive positive change across the globe.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center fade-in-up stagger-3 px-4">
+            <a href="{{ url_for('about') }}" class="bg-blue-600 text-white px-6 sm:px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 btn-animate text-sm sm:text-base">
+                Learn More
+            </a>
+            <a href="{{ url_for('contact') }}" class="border-2 border-blue-600 text-blue-600 px-6 sm:px-8 py-3 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition duration-300 btn-animate text-sm sm:text-base">
+                Get In Touch
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Gallery Slider JavaScript -->
+<script>
+let currentSlide = 0;
+const totalSlides = {{ gallery_images|length if gallery_images else 0 }};
+
+function showSlide(index) {
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('[id^="dot-"]');
+    
+    if (slides.length === 0) return;
+    
+    // Hide all slides
+    slides.forEach(slide => {
+        slide.classList.remove('active');
+    });
+    
+    // Show current slide
+    slides[index].classList.add('active');
+    
+    // Update dots
+    dots.forEach((dot, i) => {
+        if (i === index) {
+            dot.classList.add('bg-white');
+            dot.classList.remove('bg-white/50');
+        } else {
+            dot.classList.remove('bg-white');
+            dot.classList.add('bg-white/50');
+        }
+    });
+    
+    currentSlide = index;
+}
+
+function nextSlide() {
+    if (totalSlides <= 1) return;
+    const next = (currentSlide + 1) % totalSlides;
+    showSlide(next);
+}
+
+function previousSlide() {
+    if (totalSlides <= 1) return;
+    const prev = (currentSlide - 1 + totalSlides) % totalSlides;
+    showSlide(prev);
+}
+
+function goToSlide(index) {
+    if (index === currentSlide) return;
+    showSlide(index);
+}
+
+// Auto-slide functionality
+if (totalSlides > 1) {
+    setInterval(() => {
+        nextSlide();
+    }, 5000); // Change slide every 5 seconds
+}
+
+// Touch/Swipe functionality for mobile
+let touchStartX = 0;
+let touchEndX = 0;
+
+function handleTouchStart(e) {
+    touchStartX = e.changedTouches[0].screenX;
+}
+
+function handleTouchEnd(e) {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+}
+
+function handleSwipe() {
+    const swipeThreshold = 50;
+    const swipeDistance = touchEndX - touchStartX;
+    
+    if (Math.abs(swipeDistance) > swipeThreshold) {
+        if (swipeDistance > 0) {
+            previousSlide(); // Swipe right - go to previous
+        } else {
+            nextSlide(); // Swipe left - go to next
+        }
+    }
+}
+
+// Initialize the slider
+document.addEventListener('DOMContentLoaded', function() {
+    if (totalSlides > 0) {
+        showSlide(0);
+        
+        // Add touch event listeners to slider
+        const slider = document.getElementById('slider');
+        if (slider) {
+            slider.addEventListener('touchstart', handleTouchStart, { passive: true });
+            slider.addEventListener('touchend', handleTouchEnd, { passive: true });
+        }
+    }
+});
+</script>
+
+<!-- Features Section -->
+<div class="py-12 sm:py-16 lg:py-20 bg-gray-50">
+    <div class="container mx-auto px-4 sm:px-6">
+        <div class="text-center mb-12 sm:mb-16 fade-in-up">
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 px-4">Why Choose Prachin Bangla Limited?</h2>
+            <div class="w-16 sm:w-24 h-1 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto mb-6 sm:mb-8"></div>
+            <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4">
+                We combine innovation, expertise, and dedication to deliver exceptional results
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
+            <div class="bg-white p-6 sm:p-8 lg:p-10 rounded-xl shadow-lg card-hover fade-in-up stagger-1 sm:col-span-2 lg:col-span-1">
+                <div class="w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 bg-blue-100 rounded-lg flex items-center justify-center mb-4 sm:mb-6 float">
+                    <svg class="w-7 h-7 sm:w-8 sm:h-8 lg:w-10 lg:h-10 text-blue-600 icon-rotate" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">Intelligent Human Resources</h3>
+                <p class="text-sm sm:text-base lg:text-lg text-gray-600 mb-4 sm:mb-6 leading-relaxed">Our power of choice is untrammelled and when nothing prevents being able to do what we like best every pleasure.</p>
+                <div class="text-blue-600 font-semibold text-base sm:text-lg lg:text-xl">01</div>
+            </div>
+            
+            <div class="bg-white p-6 sm:p-8 lg:p-10 rounded-xl shadow-lg card-hover fade-in-up stagger-2">
+                <div class="w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 bg-green-100 rounded-lg flex items-center justify-center mb-4 sm:mb-6 float">
+                    <svg class="w-7 h-7 sm:w-8 sm:h-8 lg:w-10 lg:h-10 text-green-600 icon-rotate" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">Claims of Duty</h3>
+                <p class="text-sm sm:text-base lg:text-lg text-gray-600 mb-4 sm:mb-6 leading-relaxed">Certain circumstances owing to the claims of duty or righteous indignation and so beguiled.</p>
+                <div class="text-green-600 font-semibold text-base sm:text-lg lg:text-xl">02</div>
+            </div>
+            
+            <div class="bg-white p-6 sm:p-8 lg:p-10 rounded-xl shadow-lg card-hover fade-in-up stagger-3">
+                <div class="w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 bg-purple-100 rounded-lg flex items-center justify-center mb-4 sm:mb-6 float">
+                    <svg class="w-7 h-7 sm:w-8 sm:h-8 lg:w-10 lg:h-10 text-purple-600 icon-rotate" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">Accepted Always</h3>
+                <p class="text-sm sm:text-base lg:text-lg text-gray-600 mb-4 sm:mb-6 leading-relaxed">To take a trivial example, which of us ever undertakes laborious physical exercise.</p>
+                <div class="text-purple-600 font-semibold text-base sm:text-lg lg:text-xl">03</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CTA Section -->
+<section class="bg-blue-600 py-12 sm:py-16 gradient-animate" style="background: linear-gradient(135deg, #2563eb, #3b82f6, #1d4ed8);">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-2xl sm:text-3xl font-bold text-white mb-3 sm:mb-4 fade-in-up px-4">Create Meaningful Experiences for Employees</h2>
+        <p class="text-lg sm:text-xl text-blue-100 mb-6 sm:mb-8 max-w-2xl mx-auto fade-in-up stagger-2 px-4">
+            Our power of choice is untrammelled and when nothing prevents our being able to do what we like best every pleasure is to be welcomed.
+        </p>
+        <a href="{{ url_for('contact') }}" class="bg-white text-blue-600 px-6 sm:px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition duration-300 btn-animate fade-in-up stagger-3 text-sm sm:text-base">
+            Get Started Today
+        </a>
+    </div>
+</section>
+{% endblock %}

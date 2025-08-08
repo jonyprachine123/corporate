@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold text-gray-800">Admin Dashboard</h1>
+            <div>
+                <span class="text-gray-700 mr-4">Welcome, <strong>{{ session.username }}</strong>!</span>
+                <a href="{{ url_for('admin_logout') }}" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-8">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                <div class="mb-6 p-4 rounded-lg 
+                    {% if category == 'success' %}bg-green-100 text-green-800
+                    {% elif category == 'danger' %}bg-red-100 text-red-800
+                    {% else %}bg-blue-100 text-blue-800{% endif %}" role="alert">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <div class="bg-white p-6 rounded-lg shadow-lg mb-8">
+            <h2 class="text-2xl font-bold mb-4 text-gray-800">Upload New Notice</h2>
+            <form action="{{ url_for('add_notice') }}" method="POST" enctype="multipart/form-data">
+                <div class="mb-4">
+                    <label for="title" class="block text-gray-700 font-medium mb-2">Notice Title</label>
+                    <input type="text" name="title" id="title" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                </div>
+                <div class="mb-4">
+                    <label for="pdf_file" class="block text-gray-700 font-medium mb-2">PDF File</label>
+                    <input type="file" name="pdf_file" id="pdf_file" accept=".pdf" class="w-full text-gray-700" required>
+                    <p class="text-sm text-gray-500 mt-1">Only .pdf files are accepted.</p>
+                </div>
+                <div class="mb-4">
+                    <label for="notice_date" class="block text-gray-700 font-medium mb-2">Notice Date</label>
+                    <input type="date" name="notice_date" id="notice_date" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    <p class="text-sm text-gray-500 mt-1">Select the date for this notice (can be a back date).</p>
+                </div>
+                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg">Upload Notice</button>
+            </form>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-bold mb-4 text-gray-800">Manage Notices</h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white">
+                    <thead class="bg-gray-200">
+                        <tr>
+                            <th class="text-left py-3 px-4 font-semibold text-sm">Title</th>
+                            <th class="text-left py-3 px-4 font-semibold text-sm">Filename</th>
+                            <th class="text-left py-3 px-4 font-semibold text-sm">Uploaded On</th>
+                            <th class="text-left py-3 px-4 font-semibold text-sm">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-700">
+                        {% for notice in notices %}
+                        <tr class="border-b border-gray-200 hover:bg-gray-50">
+                            <td class="py-3 px-4">{{ notice.title }}</td>
+                            <td class="py-3 px-4">{{ notice.filename }}</td>
+                            <td class="py-3 px-4">{{ notice.timestamp.split(' ')[0] }}</td>
+                            <td class="py-3 px-4">
+                                <form action="{{ url_for('delete_notice', notice_id=notice.id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this notice?');">
+                                    <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded text-xs">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="4" class="py-4 px-4 text-center text-gray-500">No notices found.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Gallery Management Section -->
+        <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+            <h2 class="text-2xl font-bold mb-4 text-gray-800">Upload Gallery Image</h2>
+            <form action="{{ url_for('add_gallery_image') }}" method="POST" enctype="multipart/form-data">
+                <div class="mb-4">
+                    <label for="image_title" class="block text-gray-700 font-medium mb-2">Image Title</label>
+                    <input type="text" name="image_title" id="image_title" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                </div>
+                <div class="mb-4">
+                    <label for="image_file" class="block text-gray-700 font-medium mb-2">Image File</label>
+                    <input type="file" name="image_file" id="image_file" accept=".jpg,.jpeg,.png,.webp" class="w-full text-gray-700" required>
+                    <p class="text-sm text-gray-500 mt-1">Accepted formats: .jpg, .jpeg, .png, .webp</p>
+                </div>
+                <div class="mb-4">
+                    <label for="sort_order" class="block text-gray-700 font-medium mb-2">Sort Order</label>
+                    <input type="number" name="sort_order" id="sort_order" value="0" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <p class="text-sm text-gray-500 mt-1">Lower numbers appear first in the slider.</p>
+                </div>
+                <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg">Upload Image</button>
+            </form>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+            <h2 class="text-2xl font-bold mb-4 text-gray-800">Manage Gallery Images</h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white">
+                    <thead class="bg-gray-200">
+                        <tr>
+                            <th class="text-left py-3 px-4 font-semibold text-sm">Preview</th>
+                            <th class="text-left py-3 px-4 font-semibold text-sm">Title</th>
+                            <th class="text-left py-3 px-4 font-semibold text-sm">Filename</th>
+                            <th class="text-left py-3 px-4 font-semibold text-sm">Sort Order</th>
+                            <th class="text-left py-3 px-4 font-semibold text-sm">Status</th>
+                            <th class="text-left py-3 px-4 font-semibold text-sm">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-700">
+                        {% for image in gallery_images %}
+                        <tr class="border-b border-gray-200 hover:bg-gray-50">
+                            <td class="py-3 px-4">
+                                <img src="{{ url_for('static', filename='uploads/' + image.filename) }}" alt="{{ image.title }}" class="w-16 h-16 object-cover rounded">
+                            </td>
+                            <td class="py-3 px-4">{{ image.title }}</td>
+                            <td class="py-3 px-4">{{ image.filename }}</td>
+                            <td class="py-3 px-4">{{ image.sort_order }}</td>
+                            <td class="py-3 px-4">
+                                <span class="px-2 py-1 text-xs rounded-full {% if image.is_active %}bg-green-100 text-green-800{% else %}bg-red-100 text-red-800{% endif %}">
+                                    {% if image.is_active %}Active{% else %}Inactive{% endif %}
+                                </span>
+                            </td>
+                            <td class="py-3 px-4">
+                                <div class="flex space-x-2">
+                                    <form action="{{ url_for('toggle_gallery_image', image_id=image.id) }}" method="POST" class="inline">
+                                        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-3 rounded text-xs">
+                                            {% if image.is_active %}Deactivate{% else %}Activate{% endif %}
+                                        </button>
+                                    </form>
+                                    <form action="{{ url_for('delete_gallery_image', image_id=image.id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this image?');" class="inline">
+                                        <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded text-xs">Delete</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="6" class="py-4 px-4 text-center text-gray-500">No gallery images found.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
