@@ -33,7 +33,7 @@ jobs:
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./  # Upload repository contents
-        server-dir: prachinbd.com/
+        server-dir: public_html/
         log-level: verbose
         exclude: |
           **/.git*
