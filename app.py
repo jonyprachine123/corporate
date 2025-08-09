@@ -76,6 +76,10 @@ def managing_director():
 def services():
     return render_template('public/services.html')
 
+@app.route('/enterprise')
+def enterprise():
+    return render_template('public/enterprise.html')
+
 @app.route('/notices')
 def notices():
     db = get_db()
