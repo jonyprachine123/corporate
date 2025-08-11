@@ -299,18 +299,136 @@ Prachin Bangla is designed for bold, multi-sector expansion. Leveraging the expe
 <!-- Certifications & Awards -->
 <div class="py-20">
     <div class="container mx-auto px-6">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-4xl font-bold text-gray-900 mb-12 fade-in-up">Certifications</h2>
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-gray-900 mb-12 text-center fade-in-up">Certifications & Licenses</h2>
             
-            <div class="flex justify-center">
-                <div class="bg-white p-8 rounded-xl shadow-lg fade-in-up max-w-2xl">
-                    <img src="{{ url_for('static', filename='uploads/Duns.png') }}" alt="DUNS Certification" class="max-w-full h-auto mx-auto mb-6">
-                    <p class="text-gray-600 text-justify leading-relaxed">
-                        The D-U-N-S® Number 731962895 serves as a unique business identifier in the Dun & Bradstreet global database, enhancing the company's credibility and visibility worldwide. This registration allows Prachin Bangla Ltd. to engage in international trade, secure supplier relationships, and participate in government and corporate procurement opportunities.
-                    </p>
+            <!-- Certification Slider -->
+            <div class="relative overflow-hidden">
+                <div class="certification-slider flex transition-transform duration-500 ease-in-out" id="certificationSlider">
+                    <!-- DUNS Certification -->
+                    <div class="flex-shrink-0 w-full px-3">
+                        <div class="bg-white p-8 rounded-xl shadow-lg h-full">
+                            <img src="{{ url_for('static', filename='uploads/Duns.png') }}" alt="DUNS Certification" class="w-full h-96 object-contain mx-auto mb-6 rounded-lg">
+                             <h3 class="text-2xl font-semibold text-gray-900 mb-4 text-center">DUNS Number</h3>
+                             <p class="text-lg text-gray-600 text-center leading-relaxed">
+                                D-U-N-S® Number 731962895 for global business identification and credibility.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Drug License -->
+                    <div class="flex-shrink-0 w-full px-3">
+                        <div class="bg-white p-8 rounded-xl shadow-lg h-full">
+                            <img src="{{ url_for('static', filename='uploads/DrugLicense.jpg') }}" alt="Drug License" class="w-full h-96 object-contain mx-auto mb-6 rounded-lg">
+                             <h3 class="text-2xl font-semibold text-gray-900 mb-4 text-center">Drug License</h3>
+                             <p class="text-lg text-gray-600 text-center leading-relaxed">
+                                Authorized to manufacture, distribute, and sell pharmaceutical products legally.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Certificate of Incorporation -->
+                    <div class="flex-shrink-0 w-full px-3">
+                        <div class="bg-white p-8 rounded-xl shadow-lg h-full">
+                            <img src="{{ url_for('static', filename='uploads/Incorporation.jpg') }}" alt="Certificate of Incorporation" class="w-full h-96 object-contain mx-auto mb-6 rounded-lg">
+                             <h3 class="text-2xl font-semibold text-gray-900 mb-4 text-center">Incorporation</h3>
+                             <p class="text-lg text-gray-600 text-center leading-relaxed">
+                                Legal corporate entity status enabling business operations and contracts.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- TIN Certificate -->
+                    <div class="flex-shrink-0 w-full px-3">
+                        <div class="bg-white p-8 rounded-xl shadow-lg h-full">
+                            <img src="{{ url_for('static', filename='uploads/TIN.jpg') }}" alt="TIN Certificate" class="w-full h-96 object-contain mx-auto mb-6 rounded-lg">
+                             <h3 class="text-2xl font-semibold text-gray-900 mb-4 text-center">TIN Certificate</h3>
+                             <p class="text-lg text-gray-600 text-center leading-relaxed">
+                                Tax registration with National Board of Revenue for compliance.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Trade License -->
+                    <div class="flex-shrink-0 w-full px-3">
+                        <div class="bg-white p-8 rounded-xl shadow-lg h-full">
+                            <img src="{{ url_for('static', filename='uploads/TradeLicense.jpg') }}" alt="Trade License" class="w-full h-96 object-contain mx-auto mb-6 rounded-lg">
+                             <h3 class="text-2xl font-semibold text-gray-900 mb-4 text-center">Trade License</h3>
+                             <p class="text-lg text-gray-600 text-center leading-relaxed">
+                                Authorization for commercial activities within operational jurisdiction.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Navigation Arrows -->
+                <button class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-3 shadow-lg hover:bg-gray-50 transition-colors" onclick="slideCertifications('prev')">
+                    <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </button>
+                <button class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-3 shadow-lg hover:bg-gray-50 transition-colors" onclick="slideCertifications('next')">
+                    <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </button>
+                
+                <!-- Dots Indicator -->
+                <div class="flex justify-center mt-8 space-x-2">
+                    <button class="w-3 h-3 rounded-full bg-blue-600 transition-colors" onclick="goToSlide(0)" id="dot-0"></button>
+                    <button class="w-3 h-3 rounded-full bg-gray-300 transition-colors" onclick="goToSlide(1)" id="dot-1"></button>
+                    <button class="w-3 h-3 rounded-full bg-gray-300 transition-colors" onclick="goToSlide(2)" id="dot-2"></button>
+                    <button class="w-3 h-3 rounded-full bg-gray-300 transition-colors" onclick="goToSlide(3)" id="dot-3"></button>
+                    <button class="w-3 h-3 rounded-full bg-gray-300 transition-colors" onclick="goToSlide(4)" id="dot-4"></button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+let currentSlide = 0;
+const totalSlides = 5;
+const slider = document.getElementById('certificationSlider');
+
+function slideCertifications(direction) {
+    if (direction === 'next') {
+        currentSlide = (currentSlide + 1) % totalSlides;
+    } else {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    }
+    updateSlider();
+}
+
+function goToSlide(slideIndex) {
+    currentSlide = slideIndex;
+    updateSlider();
+}
+
+function updateSlider() {
+     const slideWidth = 100; // Each slide takes full width
+     const translateX = -currentSlide * slideWidth;
+     slider.style.transform = `translateX(${translateX}%)`;
+     
+     // Update dots
+     for (let i = 0; i < totalSlides; i++) {
+         const dot = document.getElementById(`dot-${i}`);
+         if (i === currentSlide) {
+             dot.classList.remove('bg-gray-300');
+             dot.classList.add('bg-blue-600');
+         } else {
+             dot.classList.remove('bg-blue-600');
+             dot.classList.add('bg-gray-300');
+         }
+     }
+ }
+
+// Auto-slide functionality
+setInterval(() => {
+    slideCertifications('next');
+}, 5000);
+
+// Handle window resize
+window.addEventListener('resize', updateSlider);
+</script>
 {% endblock %}
