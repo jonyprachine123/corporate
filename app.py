@@ -72,6 +72,10 @@ def company_profile():
 def managing_director():
     return render_template('public/managing_director.html')
 
+@app.route('/about/cfo')
+def cfo():
+    return render_template('public/cfo.html')
+
 @app.route('/about/dcfo')
 def dcfo():
     return render_template('public/dcfo.html')
