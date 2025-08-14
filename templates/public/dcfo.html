@@ -22,16 +22,8 @@
                 <div class="text-center lg:text-left fade-in-left">
                     <div class="relative inline-block">
                         <div class="inline-block rounded-2xl mx-auto lg:mx-0 scale-in float shadow-lg border-4 border-yellow-400 p-2">
-                            <!-- DCFO photo placeholder -->
-                            <div class="w-64 h-80 sm:w-80 sm:h-96 bg-gradient-to-br from-blue-100 to-purple-100 rounded-xl flex items-center justify-center">
-                                <div class="text-center">
-                                    <svg class="w-20 h-20 mx-auto text-blue-400 mb-4" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                                    </svg>
-                                    <p class="text-blue-600 font-medium">Mohammed Mizanur Rahman</p>
-                                    <p class="text-blue-500 text-sm">DCFO Photo</p>
-                                </div>
-                            </div>
+                            <!-- DCFO photo -->
+                            <img src="{{ url_for('static', filename='uploads/dcfo.png') }}" alt="Mohammed Mizanur Rahman - DCFO" class="w-64 h-80 sm:w-80 sm:h-96 rounded-xl object-cover">
                         </div>
                         <div class="absolute -bottom-3 -right-3 sm:-bottom-4 sm:-right-4 w-12 h-12 sm:w-16 sm:h-16 bg-blue-600 rounded-full flex items-center justify-center pulse">
                             <svg class="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">

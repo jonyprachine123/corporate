@@ -80,6 +80,22 @@ def cfo():
 def dcfo():
     return render_template('public/dcfo.html')
 
+@app.route('/about/cio')
+def cio():
+    return render_template('public/cio.html')
+
+@app.route('/about/board-member-1')
+def board_member_1():
+    return render_template('public/board_member_1.html')
+
+@app.route('/about/board-member-2')
+def board_member_2():
+    return render_template('public/board_member_2.html')
+
+@app.route('/about/board-member-3')
+def board_member_3():
+    return render_template('public/board_member_3.html')
+
 @app.route('/services')
 def services():
     return render_template('public/services.html')
