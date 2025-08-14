@@ -149,7 +149,7 @@ def event_registration():
                 (full_name, address, mobile_number, reference)
             )
             db.commit()
-            flash('Registration submitted successfully! You will receive a voucher number once approved.', 'success')
+            flash('Registration submitted successfully! Admin will assign a voucher number upon approval.', 'success')
             return redirect(url_for('event_registration'))
         except Exception as e:
             flash('An error occurred while submitting your registration. Please try again.', 'error')
@@ -167,24 +167,8 @@ def robots_txt():
     """Serves robots.txt file to prevent search engine indexing."""
     return send_from_directory('static', 'robots.txt')
 
-def generate_voucher_number():
-    """Generate incremental voucher number"""
-    db = get_db()
-    
-    # Get the highest voucher number
-    result = db.execute(
-        "SELECT voucher_number FROM event_registrations WHERE voucher_number LIKE 'PBL%' ORDER BY CAST(SUBSTR(voucher_number, 4) AS INTEGER) DESC LIMIT 1"
-    ).fetchone()
-    
-    if result:
-        # Extract number part and increment
-        last_number = int(result['voucher_number'][3:])
-        new_number = last_number + 1
-    else:
-        # Start from 1 if no vouchers exist
-        new_number = 1
-    
-    return f'PBL{new_number:06d}'
+# Voucher numbers are now provided by users during registration
+# No auto-generation needed
 
 @app.route('/admin/edit_registration/<int:registration_id>', methods=['POST'])
 def edit_registration(registration_id):
@@ -211,9 +195,22 @@ def edit_registration(registration_id):
             flash('This mobile number is already registered by another user.', 'danger')
             return redirect(url_for('admin_dashboard'))
         
-        # Generate voucher number if approved and not manually provided
+        # Validate voucher number if provided
+        if voucher_number:
+            # Check if voucher number already exists for other registrations
+            existing_voucher = db.execute(
+                'SELECT id FROM event_registrations WHERE voucher_number = ? AND id != ?',
+                (voucher_number, registration_id)
+            ).fetchone()
+            
+            if existing_voucher:
+                flash('This voucher number is already used by another registration.', 'danger')
+                return redirect(url_for('admin_dashboard'))
+        
+        # Check if trying to approve without voucher number
         if is_approved and not voucher_number:
-            voucher_number = generate_voucher_number()
+            flash('Cannot approve registration without a voucher number. Please provide a voucher number first.', 'danger')
+            return redirect(url_for('admin_dashboard'))
         
         # Update approved_date if being approved
         if is_approved:
@@ -242,15 +239,28 @@ def approve_registration(registration_id):
     try:
         db = get_db()
         
-        # Generate incremental voucher number
-        voucher_number = generate_voucher_number()
+        # Get the registration details to check voucher number
+        registration = db.execute(
+            'SELECT voucher_number FROM event_registrations WHERE id = ?',
+            (registration_id,)
+        ).fetchone()
+        
+        if not registration:
+            flash('Registration not found.', 'danger')
+            return redirect(url_for('admin_dashboard'))
+        
+        # Check if voucher number exists before approving
+        if not registration['voucher_number']:
+            flash('Cannot approve registration without a voucher number. Please edit the registration and add a voucher number first.', 'danger')
+            return redirect(url_for('admin_dashboard'))
         
         db.execute(
-            'UPDATE event_registrations SET is_approved = 1, voucher_number = ?, approved_date = CURRENT_TIMESTAMP WHERE id = ?',
-            (voucher_number, registration_id)
+            'UPDATE event_registrations SET is_approved = 1, approved_date = CURRENT_TIMESTAMP WHERE id = ?',
+            (registration_id,)
         )
         db.commit()
-        flash(f'Registration approved successfully! Voucher number: {voucher_number}', 'success')
+        
+        flash(f'Registration approved successfully! Voucher number: {registration["voucher_number"]}', 'success')
     except Exception as e:
         flash('Error approving registration. Please try again.', 'danger')
     
