@@ -48,6 +48,10 @@ def home():
 def about():
     return render_template('public/about.html')
 
+@app.route('/about/group-of-chairman')
+def group_of_chairman():
+    return render_template('public/group_of_chairman.html')
+
 @app.route('/about/founder')
 def founder():
     return render_template('public/founder.html')
