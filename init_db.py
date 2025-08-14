@@ -38,6 +38,21 @@ cursor.execute('''
     )
 ''')
 
+# Create the 'event_registrations' table for storing event registrations
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS event_registrations (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        full_name TEXT NOT NULL,
+        address TEXT,
+        mobile_number TEXT NOT NULL,
+        reference TEXT,
+        voucher_number TEXT UNIQUE,
+        is_approved BOOLEAN DEFAULT 0,
+        registration_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+        approved_date DATETIME
+    )
+''')
+
 # Check if the admin user already exists before inserting
 cursor.execute("SELECT * FROM users WHERE username = ?", ('admin',))
 if cursor.fetchone() is None:

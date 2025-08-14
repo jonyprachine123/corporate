@@ -118,6 +118,45 @@ def notices():
 def contact():
     return render_template('public/contact.html')
 
+@app.route('/event-registration', methods=['GET', 'POST'])
+def event_registration():
+    if request.method == 'POST':
+        full_name = request.form['full_name']
+        address = request.form.get('address', '')
+        mobile_number = request.form['mobile_number']
+        reference = request.form.get('reference', '')
+        
+        # Validate required fields
+        if not full_name or not mobile_number:
+            flash('Please fill in all required fields.', 'error')
+            return render_template('public/event_registration.html')
+        
+        try:
+            db = get_db()
+            
+            # Check if mobile number already exists
+            existing_registration = db.execute(
+                'SELECT id FROM event_registrations WHERE mobile_number = ?',
+                (mobile_number,)
+            ).fetchone()
+            
+            if existing_registration:
+                flash('This mobile number is already registered. Each mobile number can only register once.', 'error')
+                return render_template('public/event_registration.html')
+            
+            db.execute(
+                'INSERT INTO event_registrations (full_name, address, mobile_number, reference) VALUES (?, ?, ?, ?)',
+                (full_name, address, mobile_number, reference)
+            )
+            db.commit()
+            flash('Registration submitted successfully! You will receive a voucher number once approved.', 'success')
+            return redirect(url_for('event_registration'))
+        except Exception as e:
+            flash('An error occurred while submitting your registration. Please try again.', 'error')
+            return render_template('public/event_registration.html')
+    
+    return render_template('public/event_registration.html')
+
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
     """Provides a route to serve the uploaded PDF files."""
@@ -127,6 +166,137 @@ def uploaded_file(filename):
 def robots_txt():
     """Serves robots.txt file to prevent search engine indexing."""
     return send_from_directory('static', 'robots.txt')
+
+def generate_voucher_number():
+    """Generate incremental voucher number"""
+    db = get_db()
+    
+    # Get the highest voucher number
+    result = db.execute(
+        "SELECT voucher_number FROM event_registrations WHERE voucher_number LIKE 'PBL%' ORDER BY CAST(SUBSTR(voucher_number, 4) AS INTEGER) DESC LIMIT 1"
+    ).fetchone()
+    
+    if result:
+        # Extract number part and increment
+        last_number = int(result['voucher_number'][3:])
+        new_number = last_number + 1
+    else:
+        # Start from 1 if no vouchers exist
+        new_number = 1
+    
+    return f'PBL{new_number:06d}'
+
+@app.route('/admin/edit_registration/<int:registration_id>', methods=['POST'])
+def edit_registration(registration_id):
+    if 'username' not in session:
+        return redirect(url_for('admin_login'))
+    
+    full_name = request.form['full_name']
+    mobile_number = request.form['mobile_number']
+    address = request.form.get('address', '')
+    reference = request.form.get('reference', '')
+    voucher_number = request.form.get('voucher_number', '').strip()
+    is_approved = 1 if 'is_approved' in request.form else 0
+    
+    try:
+        db = get_db()
+        
+        # Check if mobile number already exists for other registrations
+        existing_registration = db.execute(
+            'SELECT id FROM event_registrations WHERE mobile_number = ? AND id != ?',
+            (mobile_number, registration_id)
+        ).fetchone()
+        
+        if existing_registration:
+            flash('This mobile number is already registered by another user.', 'danger')
+            return redirect(url_for('admin_dashboard'))
+        
+        # Generate voucher number if approved and not manually provided
+        if is_approved and not voucher_number:
+            voucher_number = generate_voucher_number()
+        
+        # Update approved_date if being approved
+        if is_approved:
+            db.execute(
+                'UPDATE event_registrations SET full_name = ?, mobile_number = ?, address = ?, reference = ?, voucher_number = ?, is_approved = ?, approved_date = CURRENT_TIMESTAMP WHERE id = ?',
+                (full_name, mobile_number, address, reference, voucher_number, is_approved, registration_id)
+            )
+        else:
+            db.execute(
+                'UPDATE event_registrations SET full_name = ?, mobile_number = ?, address = ?, reference = ?, voucher_number = ?, is_approved = ? WHERE id = ?',
+                (full_name, mobile_number, address, reference, voucher_number, is_approved, registration_id)
+            )
+        
+        db.commit()
+        flash('Registration updated successfully!', 'success')
+    except Exception as e:
+        flash('Error updating registration. Please try again.', 'danger')
+    
+    return redirect(url_for('admin_dashboard'))
+
+@app.route('/admin/approve_registration/<int:registration_id>', methods=['POST'])
+def approve_registration(registration_id):
+    if 'username' not in session:
+        return redirect(url_for('admin_login'))
+    
+    try:
+        db = get_db()
+        
+        # Generate incremental voucher number
+        voucher_number = generate_voucher_number()
+        
+        db.execute(
+            'UPDATE event_registrations SET is_approved = 1, voucher_number = ?, approved_date = CURRENT_TIMESTAMP WHERE id = ?',
+            (voucher_number, registration_id)
+        )
+        db.commit()
+        flash(f'Registration approved successfully! Voucher number: {voucher_number}', 'success')
+    except Exception as e:
+        flash('Error approving registration. Please try again.', 'danger')
+    
+    return redirect(url_for('admin_dashboard'))
+
+@app.route('/admin/delete_registration/<int:registration_id>', methods=['POST'])
+def delete_registration(registration_id):
+    if 'username' not in session:
+        return redirect(url_for('admin_login'))
+    
+    db = get_db()
+    try:
+        db.execute('DELETE FROM event_registrations WHERE id = ?', (registration_id,))
+        db.commit()
+        flash('Registration deleted successfully!', 'success')
+    except Exception as e:
+        flash(f'Error deleting registration: {str(e)}', 'danger')
+    
+    return redirect(url_for('admin_dashboard'))
+
+@app.route('/admin/api/registrations')
+def api_get_registrations():
+    """API endpoint to fetch latest event registrations for real-time updates"""
+    if 'username' not in session:
+        return {'error': 'Unauthorized'}, 401
+    
+    db = get_db()
+    event_registrations = db.execute(
+        'SELECT * FROM event_registrations ORDER BY registration_date DESC'
+    ).fetchall()
+    
+    # Convert to list of dictionaries for JSON response
+    registrations_list = []
+    for reg in event_registrations:
+        registrations_list.append({
+            'id': reg['id'],
+            'full_name': reg['full_name'],
+            'mobile_number': reg['mobile_number'],
+            'address': reg['address'],
+            'reference': reg['reference'],
+            'voucher_number': reg['voucher_number'],
+            'is_approved': bool(reg['is_approved']),
+            'registration_date': reg['registration_date']
+        })
+    
+    return {'registrations': registrations_list}
 
 # --- Admin Routes ---
 
@@ -164,7 +334,8 @@ def admin_dashboard():
     db = get_db()
     all_notices = db.execute('SELECT id, title, filename, timestamp FROM notices ORDER BY timestamp DESC').fetchall()
     gallery_images = db.execute('SELECT id, title, filename, is_active, sort_order, timestamp FROM gallery ORDER BY sort_order ASC, timestamp DESC').fetchall()
-    return render_template('admin/dashboard.html', notices=all_notices, gallery_images=gallery_images)
+    event_registrations = db.execute('SELECT * FROM event_registrations ORDER BY registration_date DESC').fetchall()
+    return render_template('admin/dashboard.html', notices=all_notices, gallery_images=gallery_images, event_registrations=event_registrations)
 
 @app.route('/admin/logout')
 def admin_logout():
