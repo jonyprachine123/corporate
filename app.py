@@ -50,7 +50,7 @@ def about():
 
 @app.route('/about/group-of-chairman')
 def group_of_chairman():
-    return render_template('public/group_of_chairman.html')
+    return render_template('public/chairmanofgroup.html')
 
 @app.route('/about/founder')
 def founder():

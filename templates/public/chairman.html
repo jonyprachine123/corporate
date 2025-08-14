@@ -1,35 +1,33 @@
 {% extends "layout.html" %}
-{% block title %}Chairman | Prachin Bangla Limited{% endblock %}
+{% block title %}Deputy Chief Finance Officer | Prachin Bangla Limited{% endblock %}
 {% block content %}
 <!-- Hero Section -->
-<div class="bg-gradient-to-br from-blue-50 to-indigo-100 py-20 gradient-animate">
-    <div class="container mx-auto px-6">
-        <div class="max-w-4xl mx-auto text-center">
-            <h1 class="text-5xl font-bold text-gray-900 mb-6 fade-in-up">Our Chairman</h1>
-            <p class="text-xl text-gray-600 leading-relaxed fade-in-up stagger-2">
-                Meet the distinguished leader who guides our strategic direction and corporate governance.
-            </p>
-        </div>
+<section class="bg-gradient-to-br from-blue-600 via-purple-700 to-indigo-800 text-white py-20 gradient-animate">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="text-5xl font-bold text-white mb-6 fade-in-up">Our Chairman</h1>
+        <p class="text-xl text-blue-100 max-w-3xl mx-auto fade-in-up stagger-2">
+            Meet the distinguished leader who guides our strategic direction and corporate governance.
+        </p>
     </div>
-</div>
+</section>
 
 
 
-<!-- Chairman Profile Section -->
-<div class="py-20">
-    <div class="container mx-auto px-6">
+<!-- DCFO Profile Section -->
+<div class="py-12 sm:py-16 lg:py-20">
+    <div class="container mx-auto px-4 sm:px-6">
         <div class="max-w-6xl mx-auto">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
                 <!-- Photo Section -->
                 <div class="text-center lg:text-left fade-in-left">
                     <div class="relative inline-block">
                         <div class="inline-block rounded-2xl mx-auto lg:mx-0 scale-in float shadow-lg border-4 border-yellow-400 p-2">
                             <!-- Chairman photo -->
-                            <img src="{{ url_for('static', filename='uploads/Chairman.png') }}" alt="Chairman" class="w-64 h-64 sm:w-80 sm:h-80 rounded-xl object-cover">
+                            <img src="{{ url_for('static', filename='uploads/Chairman.png') }}" alt="Mohammed Mizanur Rahman - DCFO" class="w-64 h-80 sm:w-80 sm:h-96 rounded-xl object-cover">
                         </div>
-                        <div class="absolute -bottom-4 -right-4 w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center pulse">
-                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        <div class="absolute -bottom-3 -right-3 sm:-bottom-4 sm:-right-4 w-12 h-12 sm:w-16 sm:h-16 bg-blue-600 rounded-full flex items-center justify-center pulse">
+                            <svg class="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                             </svg>
                         </div>
                     </div>
@@ -37,20 +35,20 @@
                 
                 <!-- Bio Section -->
                 <div class="fade-in-right">
-                    <h2 class="text-4xl font-bold text-gray-900 mb-4">Mr. [Chairman Name]</h2>
-                    <p class="text-xl text-purple-600 font-semibold mb-6">Chairman of the Board</p>
+                    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">MD Muslim Uddin Chowdhury </h2>
+                    <p class="text-lg sm:text-xl text-blue-600 font-semibold mb-4 sm:mb-6">Chairman</p>
                     
-                    <div class="prose prose-lg text-gray-600">
-                        <p class="mb-6">
-                            Our Chairman brings over 25 years of distinguished leadership experience in corporate governance, strategic planning, and business development across multiple industries.
+                    <div class="prose prose-base sm:prose-lg text-gray-600">
+                        <p class="mb-4 sm:mb-6 text-sm sm:text-base leading-relaxed">
+                            From the Seed of Dreams to the Promise of Ancient Bengal. There are some dreams on the path of life, which are born not only for us but for the entire society. I have also had such a dream in my mind for a long time—where business will be a tool of service, and profit will be a gift spent for the welfare of people.
                         </p>
                         
-                        <p class="mb-6">
-                            With a proven track record of guiding organizations through transformational growth, he provides invaluable strategic oversight and ensures that Prachin Bangla Limited maintains the highest standards of corporate excellence.
+                        <p class="mb-4 sm:mb-6 text-sm sm:text-base leading-relaxed">
+                            Today, that seed has sprouted and stands on firm roots, providing shade for everyone. On our journey are— E-commerce, which is delivering the country's products to the people and outside the country. Hospitals and diagnostics, which provide quality and accessible healthcare. Resorts, where people find a touch of peace and tranquility. Old age homes, which are safe havens of love and dignity for people at the end of their lives. And many more social initiatives are coming up—which aim to make people’s lives better.
                         </p>
                         
-                        <p>
-                            His visionary leadership and commitment to ethical business practices have been instrumental in shaping our company's culture and long-term strategic direction.
+                        <p class="text-sm sm:text-base leading-relaxed">
+                            I believe that real progress is not possible without the development of society. The true measure of business success is how many people we are able to bring smiles to.
                         </p>
                     </div>
                 </div>
@@ -59,82 +57,74 @@
     </div>
 </div>
 
-<!-- Professional Background -->
+<!-- Our Story Section -->
 <div class="bg-gray-50 py-20">
     <div class="container mx-auto px-6">
         <div class="max-w-6xl mx-auto">
-            <div class="grid lg:grid-cols-2 gap-12">
-                <!-- Professional Experience -->
-                <div class="bg-white p-8 rounded-xl shadow-lg card-hover fade-in-up">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4 scale-in">
-                            <svg class="w-6 h-6 text-purple-600 icon-rotate" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2V6"></path>
-                            </svg>
-                        </div>
-                        <h3 class="text-2xl font-bold text-gray-900">Professional Experience</h3>
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-6">Our Story – From a Dream to a Movement</h2>
+                <div class="w-24 h-1 bg-blue-600 mx-auto mb-8"></div>
+            </div>
+            
+            <div class="bg-white p-8 md:p-12 rounded-2xl shadow-lg">
+                <div class="prose prose-lg max-w-none text-gray-700">
+                    <p class="text-lg leading-relaxed mb-6">
+                        At one time in 2022, some inspiring words heard from Belayet Bhai and Mizanur Rahman Rubel lit a new light in my heart. I felt then—my long-awaited destination had been found. At that moment, the seed of a dream was silently planted—named "Prachin Bangla Limited"
+                    </p>
+                    
+                    <div class="bg-blue-50 p-6 rounded-xl mb-8">
+                        <p class="text-center text-xl font-semibold text-blue-800 mb-4">We firmly believe—</p>
+                        <blockquote class="text-center text-lg italic text-blue-700">
+                            "An entrepreneur is one who dreams and brings those dreams to life."<br>
+                            "Initiative is the most powerful tool for transforming society."
+                        </blockquote>
                     </div>
                     
-                    <div class="space-y-6">
-                        <div class="border-l-4 border-purple-600 pl-4">
-                            <h4 class="font-semibold text-gray-900">Chairman</h4>
-                            <p class="text-purple-600 font-medium">Prachin Bangla Limited</p>
-                            <p class="text-sm text-gray-500">2015 - Present</p>
-                            <p class="text-gray-600 mt-2">Providing strategic leadership and governance oversight</p>
+                    <p class="text-lg leading-relaxed mb-6">
+                    Prachin Bangla Limited is a reflection of that promise Where every step is towards building a better future, Where every dream is shared with everyone, And where the tradition of Bengal lives on through love and service.
+                    </p>
+                    
+                    <p class="text-lg leading-relaxed mb-8">
+                    May the dream of Prachin Bangla be the dream of everyone
+                    </p>
+                    
+                    <div class="grid md:grid-cols-3 gap-6 mb-8">
+                        <div class="text-center p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl">
+                            <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="font-bold text-gray-900 mb-2">Not just dreaming</h3>
+                            <p class="text-gray-600">but making dreams come true</p>
                         </div>
                         
-                        <div class="border-l-4 border-purple-600 pl-4">
-                            <h4 class="font-semibold text-gray-900">Managing Director</h4>
-                            <p class="text-purple-600 font-medium">[Previous Company Name]</p>
-                            <p class="text-sm text-gray-500">2008 - 2015</p>
-                            <p class="text-gray-600 mt-2">Led organizational transformation and expansion</p>
+                        <div class="text-center p-6 bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl">
+                            <div class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                                </svg>
+                            </div>
+                            <h3 class="font-bold text-gray-900 mb-2">Taking risks</h3>
+                            <p class="text-gray-600">to create new opportunities</p>
                         </div>
                         
-                        <div class="border-l-4 border-purple-600 pl-4">
-                            <h4 class="font-semibold text-gray-900">Senior Executive</h4>
-                            <p class="text-purple-600 font-medium">[Corporate Group]</p>
-                            <p class="text-sm text-gray-500">2000 - 2008</p>
-                            <p class="text-gray-600 mt-2">Strategic planning and business development</p>
+                        <div class="text-center p-6 bg-gradient-to-br from-purple-50 to-violet-50 rounded-xl">
+                            <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="font-bold text-gray-900 mb-2">Building sustainable solutions</h3>
+                            <p class="text-gray-600">for social welfare</p>
                         </div>
-                    </div>
-                </div>
-                
-                <!-- Board Positions & Recognition -->
-                <div class="bg-white p-8 rounded-xl shadow-lg card-hover fade-in-up stagger-2">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4 scale-in">
-                            <svg class="w-6 h-6 text-green-600 icon-rotate" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                        </div>
-                        <h3 class="text-2xl font-bold text-gray-900">Board Positions & Recognition</h3>
                     </div>
                     
-                    <div class="space-y-4">
-                        <div class="flex items-start">
-                            <div class="w-2 h-2 bg-purple-600 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                            <p class="text-gray-600">Board Member, Bangladesh Association of Software and Information Services (BASIS)</p>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="w-2 h-2 bg-purple-600 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                            <p class="text-gray-600">Advisory Board Member, Technology Innovation Council</p>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="w-2 h-2 bg-purple-600 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                            <p class="text-gray-600">"Excellence in Corporate Leadership" Award (2019)</p>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="w-2 h-2 bg-purple-600 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                            <p class="text-gray-600">Fellow, Institute of Directors Bangladesh</p>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="w-2 h-2 bg-purple-600 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                            <p class="text-gray-600">Certified Corporate Director (CCD)</p>
-                        </div>
+                    <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-8 rounded-xl text-center mb-8">
+                        <h3 class="text-2xl font-bold mb-4">Our Promise</h3>
+                        <blockquote class="text-xl italic">
+                            "The dreams we envision, we make real; so that people benefit and society thrives."
+                        </blockquote>
                     </div>
                 </div>
             </div>
@@ -142,106 +132,32 @@
     </div>
 </div>
 
-<!-- Leadership Philosophy -->
+<!-- Slogan & Quote Section -->
 <div class="py-20">
     <div class="container mx-auto px-6">
         <div class="max-w-4xl mx-auto">
-            <div class="text-center mb-12 fade-in-up">
-                <h3 class="text-3xl font-bold text-gray-900 mb-4">Leadership Philosophy</h3>
-                <p class="text-lg text-gray-600">Guiding principles that shape our corporate governance</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-                <div class="text-center fade-in-up">
-                    <div class="w-12 h-12 sm:w-16 sm:h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 scale-in float">
-                        <svg class="w-6 h-6 sm:w-8 sm:h-8 text-purple-600 icon-rotate" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                    </div>
-                    <h4 class="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">Integrity First</h4>
-                    <p class="text-gray-600 text-sm sm:text-base">Maintaining the highest ethical standards in all business decisions and stakeholder relationships.</p>
-                </div>
-                
-                <div class="text-center fade-in-up stagger-2">
-                    <div class="w-12 h-12 sm:w-16 sm:h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 scale-in float">
-                        <svg class="w-6 h-6 sm:w-8 sm:h-8 text-blue-600 icon-rotate" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                        </svg>
-                    </div>
-                    <h4 class="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">Strategic Vision</h4>
-                    <p class="text-gray-600">Fostering long-term thinking and sustainable growth strategies for lasting success.</p>
-                </div>
-                
-                <div class="text-center fade-in-up stagger-3">
-                    <div class="w-12 h-12 sm:w-16 sm:h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 scale-in float">
-                        <svg class="w-6 h-6 sm:w-8 sm:h-8 text-green-600 icon-rotate" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                        </svg>
-                    </div>
-                    <h4 class="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">Stakeholder Value</h4>
-                    <p class="text-gray-600 text-sm sm:text-base">Creating value for all stakeholders including employees, customers, and shareholders.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Chairman's Vision Statement -->
-<section class="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-blue-50 to-indigo-100">
-    <div class="container mx-auto px-4 sm:px-6">
-        <div class="text-center mb-12 sm:mb-16">
-            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">Chairman's Vision Statement</h2>
-            <div class="w-16 sm:w-24 h-1 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto mb-6 sm:mb-8"></div>
-        </div>
-        
-        <div class="max-w-4xl mx-auto">
-            <div class="bg-white rounded-2xl shadow-xl p-6 sm:p-8 lg:p-12 fade-in-up">
-                <div class="text-center mb-6 sm:mb-8">
-                    <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
-                        <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-                        </svg>
-                    </div>
-                </div>
-                
-                <div class="space-y-4 sm:space-y-6">
-                    <p class="text-base sm:text-lg text-gray-700 leading-relaxed text-center">
-                        "To position Prachin Bangla Limited as a leading force in sustainable business practices while fostering innovation, integrity, and inclusive growth across all our operations."
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Slogan -->
+                <div class="bg-gradient-to-br from-yellow-400 to-orange-500 text-white p-8 rounded-2xl text-center">
+                    <svg class="w-16 h-16 mx-auto mb-6 opacity-80" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M14,17H17L19,13V7H13V13H16M6,17H9L11,13V7H5V13H8L6,17Z" />
+                    </svg>
+                    <h3 class="text-2xl font-bold mb-4">Our Slogan</h3>
+                    <p class="text-xl font-semibold">
+                        "Innovating in Service, Committed to Progress"
                     </p>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mt-6 sm:mt-8">
-                        <div class="bg-blue-50 p-4 sm:p-6 rounded-xl">
-                            <h4 class="text-base sm:text-lg font-semibold text-blue-900 mb-2 sm:mb-3">Strategic Focus</h4>
-                            <p class="text-sm sm:text-base text-blue-800">Driving digital transformation and operational excellence across all business verticals.</p>
-                        </div>
-                        
-                        <div class="bg-indigo-50 p-4 sm:p-6 rounded-xl">
-                            <h4 class="text-base sm:text-lg font-semibold text-indigo-900 mb-2 sm:mb-3">Future Outlook</h4>
-                            <p class="text-sm sm:text-base text-indigo-800">Building resilient systems that adapt to changing market dynamics and stakeholder needs.</p>
-                        </div>
-                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Message from Chairman -->
-<div class="bg-gradient-to-r from-purple-600 to-indigo-600 py-12 sm:py-16 lg:py-20">
-    <div class="container mx-auto px-4 sm:px-6">
-        <div class="max-w-4xl mx-auto text-center text-white fade-in-up">
-            <svg class="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 sm:mb-6 opacity-80 scale-in float" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
-            </svg>
-            <h3 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">Message from the Chairman</h3>
-            <blockquote class="text-lg sm:text-xl italic leading-relaxed mb-4 sm:mb-6">
-                "Our success is built on the foundation of trust, innovation, and unwavering commitment to excellence. As we navigate the evolving business landscape, we remain dedicated to creating sustainable value while upholding the highest standards of corporate governance."
-            </blockquote>
-            <p class="text-purple-100 text-sm sm:text-base">- Chairman, Prachin Bangla Limited</p>
-        </div>
-    </div>
-</div>
+                
+                <!-- Inspirational Quote -->
+                <div class="bg-gradient-to-br from-green-500 to-teal-600 text-white p-8 rounded-2xl text-center">
+                    <svg class="w-16 h-16 mx-auto mb-6 opacity-80" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M14,17H17L19,13V7H13V13H16M6,17H9L11,13V7H5V13H8L6,17Z" />
+                    </svg>
+                    <h3 class="text-2xl font-bold mb-4">Inspirational Quote</h3>
+                    <blockquote class="text-lg italic">
+                        "Change begins with an idea, and when that idea is put into action, it transforms the entire society."
+                    </blockquote>
+                </div>
             </div>
         </div>
     </div>
@@ -259,7 +175,7 @@
                     </svg>
                 </div>
                 <h3 class="text-xl font-semibold mb-2">Email</h3>
-                <p class="text-blue-100">prachinebangla@gmail.com</p>
+                <p class="text-blue-100">rubelmizan974861@gmail.com <br> info@prachinebangla@gmail.com</p>
             </div>
             
             <div class="flex flex-col items-center">
@@ -269,7 +185,7 @@
                     </svg>
                 </div>
                 <h3 class="text-xl font-semibold mb-2">Phone</h3>
-                <p class="text-blue-100">+88 09639195229</p>
+                <p class="text-blue-100">+880 1813974861 <br>+8801901090488</p>
             </div>
             
             <div class="flex flex-col items-center">
@@ -291,13 +207,13 @@
                 </div>
                 <h3 class="text-xl font-semibold mb-2">Address</h3>
                 <div class="text-blue-100 space-y-1 text-left">
-                    <p class="font-medium">Prachin Tower</p>
+                    <p class="font-medium">Patwary Foundation</p>
+                    <p>Nayabazer Road </p>
+                    <p>Rampur, Halishahar </p>
                     <p>Chattogram</p>
-                    <p>Bangladesh</p>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 {% endblock %}
