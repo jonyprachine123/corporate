@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .tab-button.active {
+            border-bottom-color: #3b82f6 !important;
+            color: #3b82f6 !important;
+        }
+        .tab-button:hover {
+            color: #374151;
+            border-bottom-color: #d1d5db;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold text-gray-800">Admin Dashboard</h1>
+            <div>
+                <span class="text-gray-700 mr-4">Welcome, <strong>{{ session.username }}</strong>!</span>
+                <a href="{{ url_for('admin_logout') }}" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-8">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                <div class="mb-6 p-4 rounded-lg 
+                    {% if category == 'success' %}bg-green-100 text-green-800
+                    {% elif category == 'danger' %}bg-red-100 text-red-800
+                    {% else %}bg-blue-100 text-blue-800{% endif %}" role="alert">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <!-- Tab Navigation -->
+        <div class="bg-white rounded-lg shadow-lg mb-8">
+            <div class="border-b border-gray-200">
+                <nav class="-mb-px flex space-x-8 px-6" aria-label="Tabs">
+                    <button onclick="showTab('notices')" id="notices-tab" class="tab-button border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm active">
+                        Notice Management
+                    </button>
+                    <button onclick="showTab('gallery')" id="gallery-tab" class="tab-button border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                        Gallery Management
+                    </button>
+                    <button onclick="showTab('events')" id="events-tab" class="tab-button border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                        Event Registrations
+                    </button>
+                </nav>
+            </div>
+
+            <!-- Notices Tab Content -->
+            <div id="notices-content" class="tab-content p-6">
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4 text-gray-800">Upload New Notice</h2>
+                    <form action="{{ url_for('add_notice') }}" method="POST" enctype="multipart/form-data">
+                        <div class="mb-4">
+                            <label for="title" class="block text-gray-700 font-medium mb-2">Notice Title</label>
+                            <input type="text" name="title" id="title" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="pdf_file" class="block text-gray-700 font-medium mb-2">PDF File</label>
+                            <input type="file" name="pdf_file" id="pdf_file" accept=".pdf" class="w-full text-gray-700" required>
+                            <p class="text-sm text-gray-500 mt-1">Only .pdf files are accepted.</p>
+                        </div>
+                        <div class="mb-4">
+                            <label for="notice_date" class="block text-gray-700 font-medium mb-2">Notice Date</label>
+                            <input type="date" name="notice_date" id="notice_date" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <p class="text-sm text-gray-500 mt-1">Select the date for this notice (can be a back date).</p>
+                        </div>
+                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg">Upload Notice</button>
+                    </form>
+                </div>
+
+                <div>
+                    <h2 class="text-2xl font-bold mb-4 text-gray-800">Manage Notices</h2>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-white">
+                            <thead class="bg-gray-200">
+                                <tr>
+                                    <th class="text-left py-3 px-4 font-semibold text-sm">Title</th>
+                                    <th class="text-left py-3 px-4 font-semibold text-sm">Filename</th>
+                                    <th class="text-left py-3 px-4 font-semibold text-sm">Uploaded On</th>
+                                    <th class="text-left py-3 px-4 font-semibold text-sm">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-gray-700">
+                                {% for notice in notices %}
+                                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                                    <td class="py-3 px-4">{{ notice.title }}</td>
+                                    <td class="py-3 px-4">{{ notice.filename }}</td>
+                                    <td class="py-3 px-4">{{ notice.timestamp.split(' ')[0] }}</td>
+                                    <td class="py-3 px-4">
+                                        <form action="{{ url_for('delete_notice', notice_id=notice.id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this notice?');">
+                                            <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded text-xs">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                {% else %}
+                                <tr>
+                                    <td colspan="4" class="py-4 px-4 text-center text-gray-500">No notices found.</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gallery Tab Content -->
+            <div id="gallery-content" class="tab-content p-6 hidden">
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4 text-gray-800">Upload Gallery Image</h2>
+                    <form action="{{ url_for('add_gallery_image') }}" method="POST" enctype="multipart/form-data">
+                        <div class="mb-4">
+                            <label for="image_title" class="block text-gray-700 font-medium mb-2">Image Title</label>
+                            <input type="text" name="image_title" id="image_title" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="image_file" class="block text-gray-700 font-medium mb-2">Image File</label>
+                            <input type="file" name="image_file" id="image_file" accept=".jpg,.jpeg,.png,.webp" class="w-full text-gray-700" required>
+                            <p class="text-sm text-gray-500 mt-1">Accepted formats: .jpg, .jpeg, .png, .webp</p>
+                        </div>
+                        <div class="mb-4">
+                            <label for="sort_order" class="block text-gray-700 font-medium mb-2">Sort Order</label>
+                            <input type="number" name="sort_order" id="sort_order" value="0" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <p class="text-sm text-gray-500 mt-1">Lower numbers appear first in the slider.</p>
+                        </div>
+                        <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg">Upload Image</button>
+                    </form>
+                </div>
+
+                <div>
+                    <h2 class="text-2xl font-bold mb-4 text-gray-800">Manage Gallery Images</h2>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-white">
+                            <thead class="bg-gray-200">
+                                <tr>
+                                    <th class="text-left py-3 px-4 font-semibold text-sm">Preview</th>
+                                    <th class="text-left py-3 px-4 font-semibold text-sm">Title</th>
+                                    <th class="text-left py-3 px-4 font-semibold text-sm">Filename</th>
+                                    <th class="text-left py-3 px-4 font-semibold text-sm">Sort Order</th>
+                                    <th class="text-left py-3 px-4 font-semibold text-sm">Status</th>
+                                    <th class="text-left py-3 px-4 font-semibold text-sm">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-gray-700">
+                                {% for image in gallery_images %}
+                                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                                    <td class="py-3 px-4">
+                                        <img src="{{ url_for('static', filename='uploads/' + image.filename) }}" alt="{{ image.title }}" class="w-16 h-16 object-cover rounded">
+                                    </td>
+                                    <td class="py-3 px-4">{{ image.title }}</td>
+                                    <td class="py-3 px-4">{{ image.filename }}</td>
+                                    <td class="py-3 px-4">{{ image.sort_order }}</td>
+                                    <td class="py-3 px-4">
+                                        <span class="px-2 py-1 text-xs rounded-full {% if image.is_active %}bg-green-100 text-green-800{% else %}bg-red-100 text-red-800{% endif %}">
+                                            {% if image.is_active %}Active{% else %}Inactive{% endif %}
+                                        </span>
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <div class="flex space-x-2">
+                                            <form action="{{ url_for('toggle_gallery_image', image_id=image.id) }}" method="POST" class="inline">
+                                                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-3 rounded text-xs">
+                                                    {% if image.is_active %}Deactivate{% else %}Activate{% endif %}
+                                                </button>
+                                            </form>
+                                            <form action="{{ url_for('delete_gallery_image', image_id=image.id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this image?');" class="inline">
+                                                <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded text-xs">Delete</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% else %}
+                                <tr>
+                                    <td colspan="6" class="py-4 px-4 text-center text-gray-500">No gallery images found.</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Events Tab Content -->
+            <div id="events-content" class="tab-content p-6 hidden">
+                <h2 class="text-2xl font-bold mb-4 text-gray-800">Event Registrations</h2>
+                <div class="bg-blue-50 border-l-4 border-blue-400 p-4 mb-6">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <svg class="h-5 w-5 text-blue-400" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <div class="ml-3">
+                            <p class="text-sm text-blue-700">
+                                <strong>System Features:</strong><br>
+                                • Each mobile number can only register once (unique constraint)<br>
+                                • Voucher numbers are auto-generated incrementally (PBL000001, PBL000002, etc.)<br>
+                                • Admins can manually set custom voucher numbers if needed
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Real-time Status Indicator -->
+                <div class="bg-green-50 border border-green-200 p-3 rounded-lg mb-4" id="realTimeStatus">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse" id="statusIndicator"></div>
+                        </div>
+                        <div class="ml-3">
+                            <p class="text-sm text-green-700">
+                                <strong>Real-time Updates Active</strong> - Dashboard automatically refreshes every 5 seconds
+                                <span class="text-xs text-green-600 ml-2" id="lastUpdateText">Last updated: Just now</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Search and Filter Section -->
+                <div class="bg-gray-50 p-4 rounded-lg mb-6">
+                    <h3 class="text-lg font-semibold text-gray-700 mb-3">Search & Filter</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Search by Name</label>
+                            <input type="text" id="searchName" placeholder="Enter full name..." class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" onkeyup="filterRegistrations()">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Search by Mobile</label>
+                            <input type="text" id="searchMobile" placeholder="Enter mobile number..." class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" onkeyup="filterRegistrations()">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Filter by Status</label>
+                            <select id="filterStatus" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" onchange="filterRegistrations()">
+                                <option value="">All Status</option>
+                                <option value="approved">Approved</option>
+                                <option value="pending">Pending</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <button onclick="clearFilters()" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded text-sm">Clear Filters</button>
+                    </div>
+                </div>
+                
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white">
+                        <thead class="bg-gray-200">
+                            <tr>
+                                <th class="text-left py-3 px-4 font-semibold text-sm">ID</th>
+                                <th class="text-left py-3 px-4 font-semibold text-sm">Full Name</th>
+                                <th class="text-left py-3 px-4 font-semibold text-sm">Mobile</th>
+                                <th class="text-left py-3 px-4 font-semibold text-sm">Address</th>
+                                <th class="text-left py-3 px-4 font-semibold text-sm">Reference</th>
+                                <th class="text-left py-3 px-4 font-semibold text-sm">Voucher</th>
+                                <th class="text-left py-3 px-4 font-semibold text-sm">Status</th>
+                                <th class="text-left py-3 px-4 font-semibold text-sm">Registration Date</th>
+                                <th class="text-left py-3 px-4 font-semibold text-sm">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-700" id="registrationTableBody">
+                            {% for registration in event_registrations %}
+                            <tr class="border-b border-gray-200 hover:bg-gray-50 registration-row" data-name="{{ registration.full_name|lower }}" data-mobile="{{ registration.mobile_number }}" data-status="{% if registration.is_approved %}approved{% else %}pending{% endif %}">
+                                <td class="py-3 px-4">{{ registration.id }}</td>
+                                <td class="py-3 px-4">{{ registration.full_name }}</td>
+                                <td class="py-3 px-4">{{ registration.mobile_number }}</td>
+                                <td class="py-3 px-4">{{ registration.address or 'N/A' }}</td>
+                                <td class="py-3 px-4">{{ registration.reference or 'N/A' }}</td>
+                                <td class="py-3 px-4">
+                                    {% if registration.voucher_number %}
+                                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">{{ registration.voucher_number }}</span>
+                                    {% else %}
+                                        <span class="text-gray-500">Not assigned</span>
+                                    {% endif %}
+                                </td>
+                                <td class="py-3 px-4">
+                                    <span class="px-2 py-1 text-xs rounded-full {% if registration.is_approved %}bg-green-100 text-green-800{% else %}bg-yellow-100 text-yellow-800{% endif %}">
+                                        {% if registration.is_approved %}Approved{% else %}Pending{% endif %}
+                                    </span>
+                                </td>
+                                <td class="py-3 px-4">{{ registration.registration_date.split(' ')[0] }}</td>
+                                <td class="py-3 px-4">
+                                    <div class="flex space-x-2">
+                                        <button onclick="editRegistration({{ registration.id }}, '{{ registration.full_name|replace("'", "\\'")|replace('"', '\\"') }}', '{{ registration.mobile_number }}', '{{ (registration.address or '')|replace("'", "\\'")|replace('"', '\\"') }}', '{{ (registration.reference or '')|replace("'", "\\'")|replace('"', '\\"') }}', '{{ registration.voucher_number or '' }}', {{ registration.is_approved|lower }})" 
+                                                class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-3 rounded text-xs">Edit</button>
+                                        {% if not registration.is_approved %}
+                                            <form action="{{ url_for('approve_registration', registration_id=registration.id) }}" method="POST" class="inline">
+                                                <button type="submit" class="bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-3 rounded text-xs">Approve</button>
+                                            </form>
+                                        {% endif %}
+                                        <form action="{{ url_for('delete_registration', registration_id=registration.id) }}" method="POST" class="inline" onsubmit="return confirm('Are you sure you want to delete this registration?')">
+                                            <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded text-xs">Delete</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% else %}
+                            <tr id="noResultsRow">
+                                <td colspan="9" class="py-4 px-4 text-center text-gray-500">No event registrations found.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Edit Registration Modal -->
+    <div id="editModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden">
+        <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+            <div class="mt-3">
+                <h3 class="text-lg font-bold text-gray-900 mb-4">Edit Registration</h3>
+                <form id="editForm" method="POST">
+                    <input type="hidden" id="editId" name="registration_id">
+                    
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Full Name</label>
+                        <input type="text" id="editFullName" name="full_name" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Mobile Number</label>
+                        <input type="tel" id="editMobile" name="mobile_number" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Address</label>
+                        <textarea id="editAddress" name="address" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Reference</label>
+                        <input type="text" id="editReference" name="reference" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Voucher Number</label>
+                        <input type="text" id="editVoucher" name="voucher_number" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Leave empty for auto-generation">
+                        <p class="text-xs text-gray-500 mt-1">Without Voucher Number, the registration will be pending approval.</p>
+
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="flex items-center">
+                            <input type="checkbox" id="editApproved" name="is_approved" class="mr-2">
+                            <span class="text-gray-700 text-sm font-bold">Approved</span>
+                        </label>
+                    </div>
+                    
+                    <div class="flex justify-end space-x-2">
+                        <button type="button" onclick="closeEditModal()" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded">Cancel</button>
+                        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab functionality
+        function showTab(tabName) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.add('hidden');
+            });
+            
+            // Remove active class from all tab buttons
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabButtons.forEach(button => {
+                button.classList.remove('active', 'border-blue-500', 'text-blue-600');
+                button.classList.add('border-transparent', 'text-gray-500');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName + '-content').classList.remove('hidden');
+            
+            // Add active class to selected tab button
+            const activeButton = document.getElementById(tabName + '-tab');
+            activeButton.classList.add('active', 'border-blue-500', 'text-blue-600');
+            activeButton.classList.remove('border-transparent', 'text-gray-500');
+            
+            // Handle real-time updates for events tab
+            if (tabName === 'events') {
+                startRealTimeUpdates();
+            } else {
+                stopRealTimeUpdates();
+            }
+        }
+        
+        // Initialize first tab as active
+        document.addEventListener('DOMContentLoaded', function() {
+            showTab('events');
+        });
+        
+        function editRegistration(id, fullName, mobile, address, reference, voucher, isApproved) {
+            document.getElementById('editId').value = id;
+            document.getElementById('editFullName').value = fullName;
+            document.getElementById('editMobile').value = mobile;
+            document.getElementById('editAddress').value = address;
+            document.getElementById('editReference').value = reference;
+            document.getElementById('editVoucher').value = voucher;
+            document.getElementById('editApproved').checked = isApproved;
+            
+            document.getElementById('editForm').action = '/admin/edit_registration/' + id;
+            document.getElementById('editModal').classList.remove('hidden');
+        }
+        
+        function closeEditModal() {
+            document.getElementById('editModal').classList.add('hidden');
+        }
+        
+        // Close modal when clicking outside
+        document.getElementById('editModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeEditModal();
+            }
+        });
+        
+        // Filter registrations function
+        function filterRegistrations() {
+            const nameFilter = document.getElementById('searchName').value.toLowerCase();
+            const mobileFilter = document.getElementById('searchMobile').value.toLowerCase();
+            const statusFilter = document.getElementById('filterStatus').value.toLowerCase();
+            const rows = document.querySelectorAll('.registration-row');
+            let visibleCount = 0;
+            
+            rows.forEach(row => {
+                const name = row.getAttribute('data-name');
+                const mobile = row.getAttribute('data-mobile').toLowerCase();
+                const status = row.getAttribute('data-status');
+                
+                const nameMatch = !nameFilter || name.includes(nameFilter);
+                const mobileMatch = !mobileFilter || mobile.includes(mobileFilter);
+                const statusMatch = !statusFilter || status === statusFilter;
+                
+                if (nameMatch && mobileMatch && statusMatch) {
+                    row.style.display = '';
+                    visibleCount++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+            
+            // Show/hide no results message
+            const noResultsRow = document.getElementById('noResultsRow');
+            if (noResultsRow) {
+                if (visibleCount === 0 && rows.length > 0) {
+                    noResultsRow.style.display = '';
+                    noResultsRow.querySelector('td').textContent = 'No registrations match your search criteria.';
+                } else {
+                    noResultsRow.style.display = 'none';
+                }
+            }
+        }
+        
+        // Clear all filters
+        function clearFilters() {
+            document.getElementById('searchName').value = '';
+            document.getElementById('searchMobile').value = '';
+            document.getElementById('filterStatus').value = '';
+            filterRegistrations();
+        }
+        
+        // Real-time update functionality
+        let lastUpdateTime = new Date().getTime();
+        let isUpdating = false;
+        
+        function escapeHtml(text) {
+            if (!text) return '';
+            return text.toString()
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+        
+        function escapeForJs(text) {
+            if (!text) return '';
+            return text.toString()
+                .replace(/\\/g, '\\\\')
+                .replace(/'/g, "\\'") 
+                .replace(/"/g, '\\"')
+                .replace(/\n/g, '\\n')
+                .replace(/\r/g, '\\r');
+        }
+        
+        function updateRegistrationsTable(registrations) {
+            if (isUpdating) return;
+            isUpdating = true;
+            
+            const tableBody = document.getElementById('registrationTableBody');
+            const noResultsRow = document.getElementById('noResultsRow');
+            
+            // Clear existing rows except no results row
+            const existingRows = tableBody.querySelectorAll('.registration-row');
+            existingRows.forEach(row => row.remove());
+            
+            if (registrations.length === 0) {
+                if (noResultsRow) {
+                    noResultsRow.style.display = '';
+                    noResultsRow.querySelector('td').textContent = 'No event registrations found.';
+                }
+                isUpdating = false;
+                return;
+            }
+            
+            // Hide no results row
+            if (noResultsRow) {
+                noResultsRow.style.display = 'none';
+            }
+            
+            // Add new rows
+            registrations.forEach(registration => {
+                const row = document.createElement('tr');
+                row.className = 'border-b border-gray-200 hover:bg-gray-50 registration-row';
+                row.setAttribute('data-name', registration.full_name.toLowerCase());
+                row.setAttribute('data-mobile', registration.mobile_number);
+                row.setAttribute('data-status', registration.is_approved ? 'approved' : 'pending');
+                
+                const voucherDisplay = registration.voucher_number 
+                    ? `<span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">${escapeHtml(registration.voucher_number)}</span>`
+                    : '<span class="text-gray-500">Not assigned</span>';
+                
+                const statusDisplay = registration.is_approved 
+                    ? '<span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800">Approved</span>'
+                    : '<span class="px-2 py-1 text-xs rounded-full bg-yellow-100 text-yellow-800">Pending</span>';
+                
+                const approveButton = !registration.is_approved 
+                    ? `<form action="/admin/approve_registration/${registration.id}" method="POST" class="inline">
+                         <button type="submit" class="bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-3 rounded text-xs">Approve</button>
+                       </form>`
+                    : '';
+                
+                row.innerHTML = `
+                    <td class="py-3 px-4">${registration.id}</td>
+                    <td class="py-3 px-4">${escapeHtml(registration.full_name)}</td>
+                    <td class="py-3 px-4">${escapeHtml(registration.mobile_number)}</td>
+                    <td class="py-3 px-4">${escapeHtml(registration.address || 'N/A')}</td>
+                    <td class="py-3 px-4">${escapeHtml(registration.reference || 'N/A')}</td>
+                    <td class="py-3 px-4">${voucherDisplay}</td>
+                    <td class="py-3 px-4">${statusDisplay}</td>
+                    <td class="py-3 px-4">${registration.registration_date.split(' ')[0]}</td>
+                    <td class="py-3 px-4">
+                        <div class="flex space-x-2">
+                            <button onclick="editRegistration(${registration.id}, '${escapeForJs(registration.full_name)}', '${escapeForJs(registration.mobile_number)}', '${escapeForJs(registration.address || '')}', '${escapeForJs(registration.reference || '')}', '${escapeForJs(registration.voucher_number || '')}', ${registration.is_approved})" 
+                                    class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-3 rounded text-xs">Edit</button>
+                            ${approveButton}
+                            <form action="/admin/delete_registration/${registration.id}" method="POST" class="inline" onsubmit="return confirm('Are you sure you want to delete this registration?')">
+                                <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded text-xs">Delete</button>
+                            </form>
+                        </div>
+                    </td>
+                `;
+                
+                if (noResultsRow) {
+                    tableBody.insertBefore(row, noResultsRow);
+                } else {
+                    tableBody.appendChild(row);
+                }
+            });
+            
+            // Apply current filters
+            filterRegistrations();
+            isUpdating = false;
+        }
+        
+        function fetchLatestRegistrations() {
+            fetch('/admin/api/registrations')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.registrations) {
+                        updateRegistrationsTable(data.registrations);
+                        lastUpdateTime = new Date().getTime();
+                        updateStatusIndicator();
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching registrations:', error);
+                    updateStatusIndicator(true);
+                });
+        }
+        
+        // Start real-time updates when events tab is active
+        let updateInterval;
+        
+        function startRealTimeUpdates() {
+             // Clear any existing interval
+             if (updateInterval) {
+                 clearInterval(updateInterval);
+             }
+             
+             // Show status indicator
+             const statusElement = document.getElementById('realTimeStatus');
+             if (statusElement) {
+                 statusElement.style.display = 'block';
+             }
+             
+             // Fetch immediately
+             fetchLatestRegistrations();
+             
+             // Set up polling every 5 seconds
+             updateInterval = setInterval(fetchLatestRegistrations, 5000);
+         }
+        
+        function stopRealTimeUpdates() {
+             if (updateInterval) {
+                 clearInterval(updateInterval);
+                 updateInterval = null;
+             }
+             
+             // Hide status indicator
+             const statusElement = document.getElementById('realTimeStatus');
+             if (statusElement) {
+                 statusElement.style.display = 'none';
+             }
+         }
+         
+         function updateStatusIndicator(hasError = false) {
+             const statusElement = document.getElementById('realTimeStatus');
+             const indicator = document.getElementById('statusIndicator');
+             const lastUpdateText = document.getElementById('lastUpdateText');
+             
+             if (!statusElement || !indicator || !lastUpdateText) return;
+             
+             const now = new Date();
+             const timeString = now.toLocaleTimeString();
+             
+             if (hasError) {
+                 statusElement.className = 'bg-red-50 border border-red-200 p-3 rounded-lg mb-4';
+                 indicator.className = 'w-3 h-3 bg-red-500 rounded-full';
+                 statusElement.querySelector('p').innerHTML = `
+                     <strong class="text-red-700">Connection Error</strong> - Unable to fetch updates
+                     <span class="text-xs text-red-600 ml-2">Last attempt: ${timeString}</span>
+                 `;
+             } else {
+                 statusElement.className = 'bg-green-50 border border-green-200 p-3 rounded-lg mb-4';
+                 indicator.className = 'w-3 h-3 bg-green-500 rounded-full animate-pulse';
+                 statusElement.querySelector('p').innerHTML = `
+                     <strong class="text-green-700">Real-time Updates Active</strong> - Dashboard automatically refreshes every 5 seconds
+                     <span class="text-xs text-green-600 ml-2">Last updated: ${timeString}</span>
+                 `;
+             }
+         }
+    </script>
+</body>
+</html>
