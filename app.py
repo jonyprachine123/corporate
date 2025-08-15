@@ -100,6 +100,10 @@ def board_member_2():
 def board_member_3():
     return render_template('public/board_member_3.html')
 
+@app.route('/about/software-engineer')
+def software_engineer():
+    return render_template('public/software_engineer.html')
+
 @app.route('/services')
 def services():
     return render_template('public/services.html')
