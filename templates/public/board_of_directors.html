@@ -1,0 +1,337 @@
+{% extends "layout.html" %}
+{% block title %}Board of Directors | Prachin Bangla Limited{% endblock %}
+{% block content %}
+<!-- Hero Section -->
+<div class="bg-gradient-to-br from-blue-50 to-indigo-100 py-20 gradient-animate">
+    <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-5xl font-bold text-gray-900 mb-6 fade-in-up">Board of Directors</h1>
+            <p class="text-xl text-gray-600 leading-relaxed fade-in-up stagger-2">
+                Meet our distinguished board members who provide strategic guidance and governance oversight.
+            </p>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Board Members Grid -->
+<div class="py-20">
+    <div class="container mx-auto px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Our Leadership Team</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Meet our distinguished leadership team who provide strategic guidance, operational excellence, and visionary direction to drive our organization forward.
+                </p>
+            </div>
+            
+            <!-- Board Members Cards -->
+            <div class="grid lg:grid-cols-2 md:grid-cols-2 gap-8">
+                <!-- Chairman of Group Card -->
+                <div class="bg-white rounded-xl shadow-lg card-hover fade-in-up stagger-3 overflow-hidden">
+                    <div class="p-8 text-center">
+                        <div class="inline-block rounded-full mx-auto mb-6 scale-in float shadow-lg border-4 border-yellow-400 p-2">
+                            <img src="{{ url_for('static', filename='uploads/groupofchairma.png') }}" alt="Chairman of Group" class="w-24 h-24 rounded-full object-contain">
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Mainul Islam Maruf Patwary</h3>
+                        <p class="text-purple-600 font-semibold mb-4">Chairman of Group</p>
+                        <p class="text-gray-600 text-sm mb-4">Visionary leadership collective guiding strategic direction and governance excellence with exceptional oversight expertise.</p>
+                        <div class="flex justify-center space-x-2 mb-4">
+                            <span class="px-3 py-1 bg-purple-100 text-purple-600 text-xs rounded-full">Leadership</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-600 text-xs rounded-full">Governance</span>
+                        </div>
+                        <a href="{{ url_for('group_of_chairman') }}" class="inline-block bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors text-sm">View Profile</a>
+                    </div>
+                </div>
+                
+                <!-- Founder & Managing Director Card -->
+                <div class="bg-white rounded-xl shadow-lg card-hover fade-in-up stagger-2 overflow-hidden">
+                    <div class="p-8 text-center">
+                        <div class="inline-block rounded-full mx-auto mb-6 scale-in float shadow-lg border-4 border-yellow-400 p-2">
+                            <img src="{{ url_for('static', filename='uploads/founder.png') }}" alt="Belayet Hossain - Founder & Managing Director" class="w-24 h-24 rounded-full object-contain">
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Belayet Hossain</h3>
+                        <p class="text-blue-600 font-semibold mb-4">Founder & Managing Director</p>
+                        <p class="text-gray-600 text-sm mb-4">Visionary entrepreneur dedicated to blending business excellence with social responsibility, establishing Prachin Bangla Limited in 2022.</p>
+                        <div class="flex justify-center space-x-2 mb-4">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-600 text-xs rounded-full">Leadership</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-600 text-xs rounded-full">Innovation</span>
+                        </div>
+                        <a href="{{ url_for('founder') }}" class="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm">View Profile</a>
+                    </div>
+                </div>
+                
+                <!-- Co-Founder & Deputy CEO Card -->
+                <div class="bg-white rounded-xl shadow-lg card-hover fade-in-up stagger-3 overflow-hidden">
+                    <div class="p-8 text-center">
+                        <div class="inline-block rounded-full mx-auto mb-6 scale-in float shadow-lg border-4 border-yellow-400 p-2">
+                            <img src="{{ url_for('static', filename='uploads/Mahmudul.jpg') }}" alt="Mohammad Mahmudul Hasan Shamim - Co-Founder & Deputy CEO" class="w-24 h-24 rounded-full object-contain">
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Mohammad Mahmudul Hasan Shamim</h3>
+                        <p class="text-green-600 font-semibold mb-4">Co-Founder & Deputy CEO</p>
+                        <p class="text-gray-600 text-sm mb-4">Strategic innovation leader driving operational excellence across diverse portfolio from E-commerce to Healthcare and Real Estate.</p>
+                        <div class="flex justify-center space-x-2 mb-4">
+                            <span class="px-3 py-1 bg-green-100 text-green-600 text-xs rounded-full">Strategy</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-600 text-xs rounded-full">Operations</span>
+                        </div>
+                        <a href="{{ url_for('cofounder') }}" class="inline-block bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors text-sm">View Profile</a>
+                    </div>
+                </div>
+                
+                
+                <!-- Chairman Card -->
+                <div class="bg-white rounded-xl shadow-lg card-hover fade-in-up stagger-4 overflow-hidden">
+                    <div class="p-8 text-center">
+                        <div class="inline-block rounded-full mx-auto mb-6 scale-in float shadow-lg border-4 border-yellow-400 p-2">
+                            <img src="{{ url_for('static', filename='uploads/Chairman.png') }}" alt="Chairman" class="w-24 h-24 rounded-full object-contain">
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">MD Muslim Uddin Chowdhury</h3>
+                        <p class="text-purple-600 font-semibold mb-4">Chairman</p>
+                        <p class="text-gray-600 text-sm mb-4">The corporate leadership experience with expertise in strategic planning and governance.</p>
+                        <div class="flex justify-center space-x-2 mb-4">
+                            <span class="px-3 py-1 bg-purple-100 text-purple-600 text-xs rounded-full">Strategy</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-600 text-xs rounded-full">Governance</span>
+                        </div>
+                        <a href="{{ url_for('chairman') }}" class="inline-block bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors text-sm">View Profile</a>
+                    </div>
+                </div>
+                
+                <!-- Managing Director Card -->
+                <div class="bg-white rounded-xl shadow-lg card-hover fade-in-up stagger-5 overflow-hidden">
+                    <div class="p-8 text-center">
+                        <div class="inline-block rounded-full mx-auto mb-6 scale-in float shadow-lg border-4 border-yellow-400 p-2">
+                            <img src="{{ url_for('static', filename='uploads/md.png') }}" alt="Managing Director" class="w-24 h-24 rounded-full object-contain">
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Belayet Hossain</h3>
+                        <p class="text-green-600 font-semibold mb-4">Managing Director</p>
+                        <p class="text-gray-600 text-sm mb-4">Exceptional operational expertise with 12+ years experience in managing complex business operations and driving growth.</p>
+                        <div class="flex justify-center space-x-2 mb-4">
+                            <span class="px-3 py-1 bg-green-100 text-green-600 text-xs rounded-full">Operations</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-600 text-xs rounded-full">Leadership</span>
+                        </div>
+                        <a href="{{ url_for('managing_director') }}" class="inline-block bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors text-sm">View Profile</a>
+                    </div>
+                </div>
+                
+                <!-- CFO Card -->
+                <div class="bg-white rounded-xl shadow-lg card-hover fade-in-up stagger-6 overflow-hidden">
+                    <div class="p-8 text-center">
+                        <div class="inline-block rounded-full mx-auto mb-6 scale-in float shadow-lg border-4 border-yellow-400 p-2">
+                            <img src="{{ url_for('static', filename='uploads/cfo.png') }}" alt="CFO" class="w-24 h-24 rounded-full object-contain">
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Anowara Begum</h3>
+                        <p class="text-pink-600 font-semibold mb-4">Chief Finance Officer</p>
+                        <p class="text-gray-600 text-sm mb-4">Extraordinary financial expertise and strategic vision driving sustainable growth and fiscal excellence with highest standards of financial integrity.</p>
+                        <div class="flex justify-center space-x-2 mb-4">
+                            <span class="px-3 py-1 bg-pink-100 text-pink-600 text-xs rounded-full">Finance</span>
+                            <span class="px-3 py-1 bg-pink-100 text-pink-600 text-xs rounded-full">Leadership</span>
+                        </div>
+                        <a href="{{ url_for('cfo') }}" class="inline-block bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-700 transition-colors text-sm">View Profile</a>
+                    </div>
+                </div>
+                
+                <!-- DCFO Card -->
+                <div class="bg-white rounded-xl shadow-lg card-hover fade-in-up stagger-7 overflow-hidden">
+                    <div class="p-8 text-center">
+                        <div class="inline-block rounded-full mx-auto mb-6 scale-in float shadow-lg border-4 border-yellow-400 p-2">
+                            <img src="{{ url_for('static', filename='uploads/dcfo.png') }}" alt="DCFO" class="w-24 h-24 rounded-full object-contain">
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Mohammed Mizanur Rahman</h3>
+                        <p class="text-orange-600 font-semibold mb-4">Deputy Chief Finance Officer</p>
+                        <p class="text-gray-600 text-sm mb-4">Financial visionary driving fiscal excellence and strategic growth with expertise in financial management and corporate governance.</p>
+                        <div class="flex justify-center space-x-2 mb-4">
+                            <span class="px-3 py-1 bg-orange-100 text-orange-600 text-xs rounded-full">Finance</span>
+                            <span class="px-3 py-1 bg-orange-100 text-orange-600 text-xs rounded-full">Strategy</span>
+                        </div>
+                        <a href="{{ url_for('dcfo') }}" class="inline-block bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700 transition-colors text-sm">View Profile</a>
+                    </div>
+                </div>
+                
+                <!-- CIO Card -->
+                <div class="bg-white rounded-xl shadow-lg card-hover fade-in-up stagger-8 overflow-hidden">
+                    <div class="p-8 text-center">
+                        <div class="inline-block rounded-full mx-auto mb-6 scale-in float shadow-lg border-4 border-yellow-400 p-2">
+                            <img src="{{ url_for('static', filename='uploads/cio.png') }}" alt="Md Abu Baker Siddique - CIO" class="w-24 h-24 rounded-full object-contain">
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Md Abu Baker Siddique</h3>
+                        <p class="text-green-600 font-semibold mb-4">Chief Information Officer</p>
+                        <p class="text-gray-600 text-sm mb-4">A passionate and visionary entrepreneur whose journey began with the dream of creating opportunities for people. While many aspire for employment, I felt the urge to build a platform that not only generates opportunities but also inspires people to become self-reliant..</p>
+                        <div class="flex justify-center space-x-2 mb-4">
+                            <span class="px-3 py-1 bg-green-100 text-green-600 text-xs rounded-full">Technology</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-600 text-xs rounded-full">Innovation</span>
+                        </div>
+                        <a href="{{ url_for('cio') }}" class="inline-block bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors text-sm">View Profile</a>
+                    </div>
+                </div>
+                
+                <!-- Board Member 1 Card -->
+                <div class="bg-white rounded-xl shadow-lg card-hover fade-in-up stagger-9 overflow-hidden">
+                    <div class="p-8 text-center">
+                        <div class="inline-block rounded-full mx-auto mb-6 scale-in float shadow-lg border-4 border-yellow-400 p-2">
+                            <img src="{{ url_for('static', filename='uploads/broadmember1.png') }}" alt="Md. Saleh Ahmed Tanvir" class="w-24 h-24 rounded-full object-contain">
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Md. Saleh Ahmed Tanvir</h3>
+                        <p class="text-teal-600 font-semibold mb-4">Director</p>
+                        <p class="text-gray-600 text-sm mb-4">Distinguished and forward-thinking Director with a keen eye for innovation and passion for strategic growth.</p>
+                        <div class="flex justify-center space-x-2 mb-4">
+                            <span class="px-3 py-1 bg-teal-100 text-teal-600 text-xs rounded-full">Governance</span>
+                            <span class="px-3 py-1 bg-teal-100 text-teal-600 text-xs rounded-full">Strategy</span>
+                        </div>
+                        <a href="{{ url_for('board_member_1') }}" class="inline-block bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700 transition-colors text-sm">View Profile</a>
+                    </div>
+                </div>
+                
+                <!-- Board Member 2 Card -->
+                <div class="bg-white rounded-xl shadow-lg card-hover fade-in-up stagger-10 overflow-hidden">
+                    <div class="p-8 text-center">
+                        <div class="inline-block rounded-full mx-auto mb-6 scale-in float shadow-lg border-4 border-yellow-400 p-2">
+                             <img src="{{ url_for('static', filename='uploads/broadmember2.png') }}" alt="Md. Omar Ali" class="w-24 h-24 rounded-full object-contain">
+                         </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Md. Omar Ali</h3>
+                        <p class="text-indigo-600 font-semibold mb-4">Director</p>
+                        <p class="text-gray-600 text-sm mb-4">A respected and influential Director known for his steady hand, sharp business acumen, and strategic oversight.</p>
+                        <div class="flex justify-center space-x-2 mb-4">
+                            <span class="px-3 py-1 bg-indigo-100 text-indigo-600 text-xs rounded-full">Planning</span>
+                            <span class="px-3 py-1 bg-indigo-100 text-indigo-600 text-xs rounded-full">Development</span>
+                        </div>
+                        <a href="{{ url_for('board_member_2') }}" class="inline-block bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors text-sm">View Profile</a>
+                    </div>
+                </div>
+                
+                <!-- Board Member 3 Card -->
+                <div class="bg-white rounded-xl shadow-lg card-hover fade-in-up stagger-11 overflow-hidden">
+                    <div class="p-8 text-center">
+                        <div class="inline-block rounded-full mx-auto mb-6 scale-in float shadow-lg border-4 border-yellow-400 p-2">
+                             <img src="{{ url_for('static', filename='uploads/broadofmember3.png') }}" alt="Lutfun Naher Lata" class="w-24 h-24 rounded-full object-contain">
+                         </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Lutfun Naher Lata</h3>
+                        <p class="text-red-600 font-semibold mb-4">Director</p>
+                        <p class="text-gray-600 text-sm mb-4">Visionary leader committed to sustainable growth and innovative solutions for organizational success.</p>
+                        <div class="flex justify-center space-x-2 mb-4">
+                            <span class="px-3 py-1 bg-red-100 text-red-600 text-xs rounded-full">Innovation</span>
+                            <span class="px-3 py-1 bg-red-100 text-red-600 text-xs rounded-full">Growth</span>
+                        </div>
+                        <a href="{{ url_for('board_member_3') }}" class="inline-block bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors text-sm">View Profile</a>
+                    </div>
+                </div>
+                
+                <!-- Software Engineer Card -->
+                <div class="bg-white rounded-xl shadow-lg card-hover fade-in-up stagger-12 overflow-hidden">
+                    <div class="p-8 text-center">
+                        <div class="inline-block rounded-full mx-auto mb-6 scale-in float shadow-lg border-4 border-yellow-400 p-2">
+                             <img src="{{ url_for('static', filename='uploads/jony.png') }}" alt="Shamim MD Jony" class="w-24 h-24 rounded-full object-contain">
+                         </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Shamim MD Jony</h3>
+                        <p class="text-blue-600 font-semibold mb-4">Software Engineer</p>
+                        <p class="text-gray-600 text-sm mb-4">Dedicated and innovative software engineer leading AI integration and digital transformation across Prachin Bangla's diverse ventures.</p>
+                        <div class="flex justify-center space-x-2 mb-4">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-600 text-xs rounded-full">AI Innovation</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-600 text-xs rounded-full">Technology</span>
+                        </div>
+                        <a href="{{ url_for('software_engineer') }}" class="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm">View Profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Board Committees -->
+<div class="bg-gray-50 py-20">
+    <div class="container mx-auto px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Board Committees</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Our specialized committees ensure focused oversight and governance in key areas.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8">
+                <!-- Audit Committee -->
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Audit Committee</h3>
+                    <p class="text-gray-600 mb-4">Oversees financial reporting, internal controls, and external audit processes.</p>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li>• Financial statement review</li>
+                        <li>• Risk management oversight</li>
+                        <li>• Internal audit supervision</li>
+                        <li>• Compliance monitoring</li>
+                    </ul>
+                </div>
+                
+                <!-- Nomination Committee -->
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <div class="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Nomination Committee</h3>
+                    <p class="text-gray-600 mb-4">Responsible for board composition and executive appointments.</p>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li>• Board member selection</li>
+                        <li>• Skills assessment</li>
+                        <li>• Succession planning</li>
+                        <li>• Performance evaluation</li>
+                    </ul>
+                </div>
+                
+                <!-- Remuneration Committee -->
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <div class="w-16 h-16 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Remuneration Committee</h3>
+                    <p class="text-gray-600 mb-4">Determines compensation policies and executive remuneration.</p>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li>• Compensation strategy</li>
+                        <li>• Performance incentives</li>
+                        <li>• Benefits administration</li>
+                        <li>• Market benchmarking</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Governance Principles -->
+<div class="py-20">
+    <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl font-bold text-gray-900 mb-8">Our Governance Principles</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-100 p-6 sm:p-8 rounded-xl">
+                    <div class="w-12 h-12 sm:w-16 sm:h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                        <svg class="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Transparency & Accountability</h3>
+                    <p class="text-gray-600">We maintain open communication with stakeholders and ensure accountability in all our decisions and actions.</p>
+                </div>
+                
+                <div class="bg-gradient-to-br from-green-50 to-emerald-100 p-8 rounded-xl">
+                    <div class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Ethical Leadership</h3>
+                    <p class="text-gray-600">Our board demonstrates the highest ethical standards and promotes a culture of integrity throughout the organization.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,214 @@
+{% extends "layout.html" %}
+{% block title %}Co-Founder | Prachin Bangla Limited{% endblock %}
+{% block content %}
+<!-- Hero Section -->
+<section class="bg-gradient-to-br from-blue-600 via-purple-700 to-indigo-800 text-white py-20 gradient-animate">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="text-5xl font-bold text-white mb-6 fade-in-up">Our Co-Founder</h1>
+        <p class="text-xl text-blue-100 max-w-3xl mx-auto fade-in-up stagger-2">
+            Meet the visionary leader who co-founded our organization with a mission to create positive social impact
+        </p>
+    </div>
+</section>
+
+
+
+<!-- Founder Profile Section -->
+<div class="py-12 sm:py-16 lg:py-20">
+    <div class="container mx-auto px-4 sm:px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
+                <!-- Photo Section -->
+                <div class="text-center lg:text-left fade-in-left">
+                    <div class="relative inline-block">
+                        <div class="inline-block rounded-2xl mx-auto lg:mx-0 scale-in float shadow-lg border-4 border-yellow-400 p-2">
+                            <!-- Co-founder photo -->
+                            <img src="{{ url_for('static', filename='uploads/Mahmudul.jpg') }}" alt="Mohammad Mahmudul Hasan Shamim - Co-Founder & Deputy Chief Executive Officer" class="w-64 h-auto sm:w-80 rounded-xl object-contain">
+                        </div>
+                        <div class="absolute -bottom-3 -right-3 sm:-bottom-4 sm:-right-4 w-12 h-12 sm:w-16 sm:h-16 bg-blue-600 rounded-full flex items-center justify-center pulse">
+                            <svg class="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Bio Section -->
+                <div class="fade-in-right">
+                    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">Mohammad Mahmudul Hasan Shamim</h2>
+                    <p class="text-lg sm:text-xl text-blue-600 font-semibold mb-4 sm:mb-6">Co-Founder & Deputy Chief Executive Officer</p>
+                    
+                    <div class="prose prose-base sm:prose-lg text-gray-600">
+                        <p class="mb-4 sm:mb-6 text-sm sm:text-base leading-relaxed">
+                            As Co-founder and Deputy Chief Executive Officer, Mohammad Mahmudul Hasan Shamim has been a central architect of the Group's journey and success. Instrumental in our establishment in 2023, he united his distinguished career in strategic innovation with a shared vision: to build a dynamic group of companies that pioneers growth across pivotal sectors of Bangladesh's economy.
+                        </p>
+                        
+                        <p class="mb-4 sm:mb-6 text-sm sm:text-base leading-relaxed">
+                            In his role as DCEO, he is the driving force that translates ambitious strategy into operational excellence. His leadership ensures synergy across our diverse portfolio—from E-commerce and Pharmaceuticals to Healthcare and Real Estate—navigating our trajectory from a visionary startup to a respected market leader.
+                        </p>
+                        
+                        <p class="text-sm sm:text-base leading-relaxed">
+                            Guided by a steadfast commitment to uncompromising excellence, relentless innovation, and sustainable practices, Mr. Shamim champions our core mission: to build market-leading enterprises that not only set new standards of performance but also contribute meaningfully to the nation's progress and the well-being of its communities.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Education & Experience Section -->
+<div class="bg-gray-50 py-20">
+    <div class="container mx-auto px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Education -->
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900">Expertise</h3>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-blue-600 pl-4">
+                            <h4 class="font-semibold text-gray-900">Strategic Innovation Leadership</h4>
+                            <p class="text-gray-600">Distinguished career in strategic business development</p>
+                            <p class="text-sm text-gray-500">Multi-sector expertise across diverse industries</p>
+                        </div>
+                        
+                        <div class="border-l-4 border-blue-600 pl-4">
+                            <h4 class="font-semibold text-gray-900">Operational Excellence</h4>
+                            <p class="text-gray-600">Expert in translating strategy into operational success</p>
+                            <p class="text-sm text-gray-500">Portfolio management and synergy optimization</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Key Achievements -->
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900">Key Achievements</h3>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="w-2 h-2 bg-blue-600 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <p class="text-gray-600"><strong>Spearheaded Rapid Diversification:</strong> Co-architected the Group's launch in 2023 and scaled it into a multi-sector conglomerate, successfully establishing ventures in E-commerce, Laboratories, Healthcare and Real Estate.</p>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-2 h-2 bg-blue-600 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <p class="text-gray-600"><strong>Engineered Synergistic Growth:</strong> Designed and implemented a group-wide operational framework that integrates diverse businesses, drives efficiency, and maximizes strategic growth across the portfolio.</p>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-2 h-2 bg-blue-600 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <p class="text-gray-600"><strong>Set New Industry Benchmarks:</strong> Led the establishment of a Digitalized hospital and diagnostic center 🏥, elevating regional standards for patient care and medical technology adoption.</p>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-2 h-2 bg-blue-600 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <p class="text-gray-600"><strong>Achieved Market Leadership:</strong> Championed the launch of a proprietary e-commerce platform that rapidly captured significant market share through superior technology and user experience.</p>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-2 h-2 bg-blue-600 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <p class="text-gray-600"><strong>Built a High-Performance Organization:</strong> Attracted top-tier talent and cultivated a dynamic leadership team to execute the Group's ambitious, multi-industry vision.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Contact Information Section -->
+
+
+<!-- Vision Statement -->
+<div class="py-20">
+    <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-12 rounded-2xl">
+                <svg class="w-16 h-16 mx-auto mb-6 opacity-80" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+                </svg>
+                <h3 class="text-3xl font-bold mb-6">Our Vision & Mission</h3>
+                <blockquote class="text-xl italic leading-relaxed mb-6">
+                    "Our vision is guided by the belief that our work is an Amanah—a sacred trust. We are committed to serving the people of Bangladesh, viewing our diverse ventures in healthcare, real estate, and technology not as mere commerce, but as a profound duty to foster national progress."
+                </blockquote>
+                <blockquote class="text-lg leading-relaxed">
+                    "Our goal is to build a benchmark group of companies that is both a market leader and a beacon of ethical practice. We strive to create a lasting legacy of integrity and service that honors our faith and builds a prosperous nation for generations to come, with the grace and guidance of the Almighty. May Allah help us to achieve the prosperity."
+                </blockquote>
+                <p class="mt-6 text-blue-100">-Mohammad Mahmudul Hasan Shamim, Co-Founder & DCEO</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Contact Information -->
+<div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl font-bold mb-8">Get in Touch</h2>
+        <div class="grid md:grid-cols-4 gap-8">
+            <div class="flex flex-col items-center">
+                <div class="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Email</h3>
+                <p class="text-blue-100">prachinebangla@gmail.com</p>
+            </div>
+            
+            <div class="flex flex-col items-center">
+                <div class="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Phone</h3>
+                <p class="text-blue-100">+880 9639195229</p>
+            </div>
+            
+            <div class="flex flex-col items-center">
+                <div class="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Website</h3>
+                <p class="text-blue-100">www.prachinebangla.com</p>
+            </div>
+            
+            <div class="flex flex-col items-center">
+                <div class="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Address</h3>
+                <div class="text-blue-100 space-y-1 text-left">
+                    <p class="font-medium">Sharifpur Dargah Bari</p>
+                    <p>P.O: Chitoshi (3623)</p>
+                    <p>Upazilla: Monohargonj</p>
+                    <p>District: Cumilla</p>
+                    <p>Division: Chattogram</p>
+                    <p>Country: Bangladesh</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

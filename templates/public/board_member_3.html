@@ -1,0 +1,177 @@
+{% extends "layout.html" %}
+{% block title %}Lutfun Naher Lata | Prachin Bangla Limited{% endblock %}
+{% block content %}
+<!-- Hero Section -->
+<section class="bg-gradient-to-br from-blue-600 via-purple-700 to-indigo-800 text-white py-20 gradient-animate">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="text-5xl font-bold text-white mb-6 fade-in-up">Lutfun Naher Lata</h1>
+        <p class="text-xl text-blue-100 max-w-3xl mx-auto fade-in-up stagger-2">
+            Meet the strategic leader who contributes to our organization's governance and growth
+        </p>
+    </div>
+</section>
+
+
+
+<!-- Board Member Profile Section -->
+<div class="py-12 sm:py-16 lg:py-20">
+    <div class="container mx-auto px-4 sm:px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
+                <!-- Photo Section -->
+                <div class="text-center lg:text-left fade-in-left">
+                    <div class="relative inline-block">
+                        <div class="inline-block rounded-2xl mx-auto lg:mx-0 scale-in float shadow-lg border-4 border-yellow-400 p-2">
+                            <!-- Board Member 3 photo -->
+                            <img src="{{ url_for('static', filename='uploads/broadofmember3.png') }}" alt="Lutfun Naher Lata" class="w-64 h-80 sm:w-80 sm:h-96 rounded-xl object-contain">
+                        </div>
+                        <div class="absolute -bottom-3 -right-3 sm:-bottom-4 sm:-right-4 w-12 h-12 sm:w-16 sm:h-16 bg-blue-600 rounded-full flex items-center justify-center pulse">
+                            <svg class="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Bio Section -->
+                <div class="fade-in-right">
+                    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">Lutfun Naher Lata</h2>
+                    <p class="text-lg sm:text-xl text-blue-600 font-semibold mb-4 sm:mb-6">Board Member</p>
+                    
+                    <div class="prose prose-base sm:prose-lg text-gray-600">
+                        <p class="mb-4 sm:mb-6 text-sm sm:text-base leading-relaxed">
+                            As a Board Member, this distinguished leader brings exceptional strategic expertise and governance experience to Prachin Bangla Limited. Their leadership in strategic planning and organizational oversight has been instrumental in driving our organization's sustainable growth and operational excellence.
+                        </p>
+                        
+                        <p class="mb-4 sm:mb-6 text-sm sm:text-base leading-relaxed">
+                            With a deep understanding of corporate governance and strategic management, they ensure our diverse portfolio maintains the highest standards of operational integrity while supporting our mission of creating positive social impact across Bangladesh.
+                        </p>
+                        
+                        <p class="text-sm sm:text-base leading-relaxed">
+                            Their commitment to excellence and innovation in strategic management aligns perfectly with our core values of transparency, accountability, and sustainable development, making them an invaluable leader in our journey toward building a better Bangladesh.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Our Story Section -->
+<!-- <div class="bg-gray-50 py-20">
+    <div class="container mx-auto px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-6">Our Story – From a Dream to a Movement</h2>
+                <div class="w-24 h-1 bg-blue-600 mx-auto mb-8"></div>
+            </div>
+            
+            <div class="bg-white p-8 md:p-12 rounded-2xl shadow-lg">
+                <div class="prose prose-lg max-w-none text-gray-700">
+                    <p class="text-lg leading-relaxed mb-6">
+                        In 2022, an inspiring conversation over a cup of tea with Belayet Bhai sparked the beginning of our journey. What started as a simple idea blossomed into Prachin Bangla Limited—a noble mission dedicated to making life easier, advancing society, and tirelessly fostering new entrepreneurs.
+                    </p>
+                    
+                    <div class="bg-blue-50 p-6 rounded-xl mb-8">
+                        <p class="text-center text-xl font-semibold text-blue-800 mb-4">We firmly believe—</p>
+                        <blockquote class="text-center text-lg italic text-blue-700">
+                            "An entrepreneur is one who dreams and brings those dreams to life."<br>
+                            "Initiative is the most powerful tool for transforming society."
+                        </blockquote>
+                    </div>
+                    
+                    <p class="text-lg leading-relaxed mb-6">
+                        Our work is more than business; it is a commitment to creating positive change in people's lives. By delivering medicine to every home in Chattogram, establishing modern hospitals and diagnostic centers, building care homes, and empowering the youth as entrepreneurs, we strive to build a healthier, aware, and self-reliant community.
+                    </p>
+                    
+                    <p class="text-lg leading-relaxed mb-8">
+                        We understand that change begins with a courageous step. Turning dreams into reality demands unwavering determination, hard work, and steadfast perseverance. And that is the path we walk—
+                    </p>
+                    
+                    <div class="grid md:grid-cols-3 gap-6 mb-8">
+                        <div class="text-center p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl">
+                            <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="font-bold text-gray-900 mb-2">Not just dreaming</h3>
+                            <p class="text-gray-600">but making dreams come true</p>
+                        </div>
+                        
+                        <div class="text-center p-6 bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl">
+                            <div class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                                </svg>
+                            </div>
+                            <h3 class="font-bold text-gray-900 mb-2">Taking risks</h3>
+                            <p class="text-gray-600">to create new opportunities</p>
+                        </div>
+                        
+                        <div class="text-center p-6 bg-gradient-to-br from-purple-50 to-violet-50 rounded-xl">
+                            <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="font-bold text-gray-900 mb-2">Building sustainable solutions</h3>
+                            <p class="text-gray-600">for social welfare</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-8 rounded-xl text-center mb-8">
+                        <h3 class="text-2xl font-bold mb-4">Our Promise</h3>
+                        <blockquote class="text-xl italic">
+                            "The dreams we envision, we make real; so that people benefit and society thrives."
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<!-- Contact Section -->
+<div class="bg-gradient-to-br from-blue-600 via-purple-700 to-indigo-800 text-white py-20">
+    <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-8">Get in Touch</h2>
+            <p class="text-xl text-blue-100 mb-12">Ready to be part of our journey? Let's connect and build a better Bangladesh together.</p>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Email</h3>
+                    <p class="text-blue-100">info@prachinbangla.com</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Phone</h3>
+                    <p class="text-blue-100">+880 9639195229</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Address</h3>
+                    <p class="text-blue-100">Chattogram, Bangladesh</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

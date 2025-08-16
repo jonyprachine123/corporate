@@ -1,0 +1,311 @@
+<!-- Updated: Latest version with complete founder information - Force deployment -->
+{% extends "layout.html" %}
+{% block title %}Founder | Prachin Bangla Limited{% endblock %}
+{% block content %}
+<!-- Hero Section -->
+<section class="bg-gradient-to-br from-blue-600 via-purple-700 to-indigo-800 text-white py-20 gradient-animate">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="text-5xl font-bold text-white mb-6 fade-in-up">Our Founder</h1>
+        <p class="text-xl text-blue-100 max-w-3xl mx-auto fade-in-up stagger-2">
+            Meet the visionary leader who founded our organization with a mission to create positive social impact
+        </p>
+    </div>
+</section>
+
+<!-- Founder Profile Section -->
+<div class="py-12 sm:py-16 lg:py-20">
+    <div class="container mx-auto px-4 sm:px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
+                <!-- Photo Section -->
+                <div class="text-center lg:text-left fade-in-left">
+                    <div class="relative inline-block">
+                        <div class="inline-block rounded-2xl mx-auto lg:mx-0 scale-in float shadow-lg border-4 border-yellow-400 p-2">
+                            <!-- Founder photo -->
+                            <img src="{{ url_for('static', filename='uploads/founder.png') }}" alt="Belayet Hossain - Founder & Managing Director" class="w-64 h-auto sm:w-80 rounded-xl object-contain">
+                        </div>
+                        <div class="absolute -bottom-3 -right-3 sm:-bottom-4 sm:-right-4 w-12 h-12 sm:w-16 sm:h-16 bg-blue-600 rounded-full flex items-center justify-center pulse">
+                            <svg class="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Bio Section -->
+                <div class="fade-in-right">
+                    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">Belayet Hossain</h2>
+                    <p class="text-lg sm:text-xl text-blue-600 font-semibold mb-4 sm:mb-6">Founder & Managing Director</p>
+                    
+                    <div class="prose prose-base sm:prose-lg text-gray-600">
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">Founder's Biography</h3>
+                        <p class="mb-4 sm:mb-6 text-sm sm:text-base leading-relaxed">
+                            Belayet Hossain is a visionary entrepreneur and a man of action whose journey began at the grassroots level of Bangladesh. Rising through personal determination and deep understanding of the nation's social and economic landscape, he has dedicated his life to blending business excellence with social responsibility.
+                        </p>
+                        
+                        <p class="mb-4 sm:mb-6 text-sm sm:text-base leading-relaxed">
+                            Driven by the belief that Bangladesh's youth can become the engine of national progress if provided with the right opportunities, he established Prachin Bangla Limited in 2022. His leadership philosophy is rooted in service, innovation, and ethical growth — ensuring that every business initiative contributes to the betterment of society.
+                        </p>
+                        
+                        <h3 class="text-xl font-bold text-gray-900 mb-4 mt-8">Company Story</h3>
+                        <p class="mb-4 sm:mb-6 text-sm sm:text-base leading-relaxed">
+                            Prachin Bangla Limited is more than a company — it is a movement to build a healthy, prosperous, and ethical society. Founded in Chattogram, Bangladesh, the organization operates in multiple sectors, including health products, hospitals, foundations, social development, and entrepreneurship training.
+                        </p>
+                        
+                        <p class="text-sm sm:text-base leading-relaxed">
+                            The company's philosophy is to combine the rich heritage of Bengal with modern technology to deliver sustainable and impactful solutions. Under Belayet Hossain's leadership, Prachin Bangla Limited focuses equally on economic growth and social responsibility, creating an ecosystem where business success benefits the wider community.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Education & Experience Section -->
+<div class="bg-gray-50 py-20">
+    <div class="container mx-auto px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Company Sectors -->
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900">Business Sectors</h3>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-blue-600 pl-4">
+                            <h4 class="font-semibold text-gray-900">Health Products</h4>
+                            <p class="text-gray-600">Manufacturing and distributing safe, high-quality, and affordable health products.</p>
+                            <p class="text-sm text-gray-500">Blending natural ingredients with modern science for effective, accessible healthcare solutions.</p>
+                        </div>
+                        
+                        <div class="border-l-4 border-blue-600 pl-4">
+                            <h4 class="font-semibold text-gray-900">Hospitals & Diagnostic Services</h4>
+                            <p class="text-gray-600">Plans to establish advanced hospitals and diagnostic centers with state-of-the-art technology.</p>
+                            <p class="text-sm text-gray-500">Focus on low-cost, high-quality medical services, reaching even the most remote regions of Bangladesh.</p>
+                        </div>
+                        
+                        <div class="border-l-4 border-blue-600 pl-4">
+                            <h4 class="font-semibold text-gray-900">Foundation & Social Development</h4>
+                            <p class="text-gray-600">Educational Support – Scholarships for meritorious students from financially challenged backgrounds.</p>
+                            <p class="text-sm text-gray-500">Health Awareness – Free health camps and awareness programs in rural and urban areas.</p>
+                            <p class="text-sm text-gray-500">Women's Empowerment – Vocational training and entrepreneurship opportunities for women.</p>
+                        </div>
+                        
+                        <div class="border-l-4 border-blue-600 pl-4">
+                            <h4 class="font-semibold text-gray-900">Training & Entrepreneurship Development</h4>
+                            <p class="text-gray-600">Skill-building programs for young people.</p>
+                            <p class="text-sm text-gray-500">Encouraging self-reliance and entrepreneurship to strengthen the national economy.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mission, Vision & Values -->
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900">Mission, Vision & Values</h3>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="font-semibold text-gray-900 mb-2">Mission</h4>
+                            <p class="text-gray-600 mb-3">"To build a healthy, prosperous, and ethical society by providing quality products and services for the health, education, and economic development of the people."</p>
+                            <p class="text-sm text-gray-500">Key mission priorities include:</p>
+                            <ul class="text-sm text-gray-500 mt-2 space-y-1">
+                                <li>• Supplying safe, affordable health products</li>
+                                <li>• Offering world-class hospital services</li>
+                                <li>• Promoting health awareness nationwide</li>
+                                <li>• Fostering entrepreneurship and skill development</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-semibold text-gray-900 mb-2">Vision</h4>
+                            <p class="text-gray-600 mb-3">"To become a leading ethical and innovative business group in Bangladesh, bringing the light of health, education, and development to every individual in the country."</p>
+                            <p class="text-sm text-gray-500">The long-term vision focuses on:</p>
+                            <ul class="text-sm text-gray-500 mt-2 space-y-1">
+                                <li>• Raising healthcare standards</li>
+                                <li>• Leveraging innovative technologies</li>
+                                <li>• Creating sustainable employment</li>
+                                <li>• Preserving environmental and social balance</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-semibold text-gray-900 mb-2">Core Values</h4>
+                            <div class="grid grid-cols-2 gap-2 text-sm">
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-green-600 rounded-full mr-2"></div>
+                                    <span class="text-gray-600">Humanity</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-green-600 rounded-full mr-2"></div>
+                                    <span class="text-gray-600">Quality</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-green-600 rounded-full mr-2"></div>
+                                    <span class="text-gray-600">Integrity</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-green-600 rounded-full mr-2"></div>
+                                    <span class="text-gray-600">Innovation</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-green-600 rounded-full mr-2"></div>
+                                    <span class="text-gray-600">Social Responsibility</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-green-600 rounded-full mr-2"></div>
+                                    <span class="text-gray-600">Teamwork</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Unique Strengths Section -->
+<div class="bg-gray-50 py-16">
+    <div class="container mx-auto px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Unique Strengths</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">In-House Production & Quality Control</h3>
+                    <p class="text-gray-600 text-sm">Maintaining excellence from manufacturing to delivery.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Experienced & Dedicated Team</h3>
+                    <p class="text-gray-600 text-sm">Skilled professionals across all operational areas.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Modern & Eco-Friendly Technology</h3>
+                    <p class="text-gray-600 text-sm">Sustainable practices for long-term growth.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Customer-Centric Service</h3>
+                    <p class="text-gray-600 text-sm">Placing customer satisfaction at the heart of operations.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-lg md:col-span-2 lg:col-span-1">
+                    <div class="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Sustainable Development Plan</h3>
+                    <p class="text-gray-600 text-sm">Focusing on long-term social and economic progress, not just profit.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Vision Statement -->
+<div class="py-20">
+    <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-12 rounded-2xl">
+                <svg class="w-16 h-16 mx-auto mb-6 opacity-80" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+                </svg>
+                <h3 class="text-3xl font-bold mb-6">Message from the Founder</h3>
+                <blockquote class="text-xl italic leading-relaxed">
+                    "At Prachin Bangla Limited, our work goes beyond business — it is a mission to serve. Every project we undertake is guided by the principles of humanity, quality, and responsibility. By blending tradition with innovation, we are not only building a successful enterprise but also shaping a future where every individual in Bangladesh can thrive."
+                </blockquote>
+                <p class="mt-6 text-blue-100">— Belayet Hossain<br>Founder & Managing Director<br>Prachin Bangla Limited</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Contact Information -->
+<div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl font-bold mb-8">Get in Touch</h2>
+        <div class="grid md:grid-cols-4 gap-8">
+            <div class="flex flex-col items-center">
+                <div class="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Email</h3>
+                <p class="text-blue-100">prachinebangla@gmail.com</p>
+            </div>
+            
+            <div class="flex flex-col items-center">
+                <div class="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Phone</h3>
+                <p class="text-blue-100">+880 9639195229</p>
+            </div>
+            
+            <div class="flex flex-col items-center">
+                <div class="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Website</h3>
+                <p class="text-blue-100">www.prachinebangla.com</p>
+            </div>
+            
+            <div class="flex flex-col items-center">
+                <div class="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Address</h3>
+                <div class="text-blue-100 space-y-1 text-left">
+                    <p class="font-medium">Prachin Tower</p>
+                    <p>Chattogram</p>
+                    <p>Bangladesh</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
