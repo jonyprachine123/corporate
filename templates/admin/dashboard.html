@@ -64,11 +64,11 @@
                     <form action="{{ url_for('add_notice') }}" method="POST" enctype="multipart/form-data">
                         <div class="mb-4">
                             <label for="title" class="block text-gray-700 font-medium mb-2">Notice Title</label>
-                            <input type="text" name="title" id="title" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <input type="text" name="title" id="title" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" style="font-family: 'Google Sans', sans-serif;" required>
                         </div>
                         <div class="mb-4">
                             <label for="summary" class="block text-gray-700 font-medium mb-2">Notice Summary</label>
-                            <textarea name="summary" id="summary" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter a brief summary of the notice..."></textarea>
+                            <textarea name="summary" id="summary" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" style="font-family: 'Google Sans', sans-serif;" placeholder="Enter a brief summary of the notice..."></textarea>
                             <p class="text-sm text-gray-500 mt-1">Optional: Provide a brief summary that will be displayed on the notice board.</p>
                         </div>
                         <div class="mb-4">
@@ -101,8 +101,8 @@
                             <tbody class="text-gray-700">
                                 {% for notice in notices %}
                                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                                    <td class="py-3 px-4">{{ notice.title }}</td>
-                                    <td class="py-3 px-4">{{ notice.summary or 'No summary' }}</td>
+                                    <td class="py-3 px-4" style="font-family: 'Google Sans', sans-serif;">{{ notice.title }}</td>
+                                    <td class="py-3 px-4" style="font-family: 'Google Sans', sans-serif;">{{ notice.summary or 'No summary' }}</td>
                                     <td class="py-3 px-4">{{ notice.filename }}</td>
                                     <td class="py-3 px-4">{{ notice.timestamp.split(' ')[0] }}</td>
                                     <td class="py-3 px-4">

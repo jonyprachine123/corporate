@@ -415,6 +415,7 @@ def export_pdf():
     title_style = ParagraphStyle(
         'CustomTitle',
         parent=styles['Heading1'],
+        fontName='Helvetica-Bold',  # Note: Google Sans would require font registration
         fontSize=16,
         spaceAfter=30,
         alignment=1  # Center alignment
