@@ -123,7 +123,7 @@ def enterprise():
 @app.route('/notices')
 def notices():
     db = get_db()
-    all_notices = db.execute('SELECT id, title, filename, timestamp FROM notices ORDER BY timestamp DESC').fetchall()
+    all_notices = db.execute('SELECT id, title, filename, summary, timestamp FROM notices ORDER BY timestamp DESC').fetchall()
     return render_template('public/notices.html', notices=all_notices)
 
 @app.route('/contact')
@@ -354,7 +354,7 @@ def admin_dashboard():
         return redirect(url_for('admin_login'))
     
     db = get_db()
-    all_notices = db.execute('SELECT id, title, filename, timestamp FROM notices ORDER BY timestamp DESC').fetchall()
+    all_notices = db.execute('SELECT id, title, filename, summary, timestamp FROM notices ORDER BY timestamp DESC').fetchall()
     gallery_images = db.execute('SELECT id, title, filename, is_active, sort_order, timestamp FROM gallery ORDER BY sort_order ASC, timestamp DESC').fetchall()
     event_registrations = db.execute('SELECT * FROM event_registrations ORDER BY registration_date DESC').fetchall()
     return render_template('admin/dashboard.html', notices=all_notices, gallery_images=gallery_images, event_registrations=event_registrations)
@@ -508,6 +508,7 @@ def add_notice():
         return redirect(url_for('admin_login'))
 
     title = request.form['title']
+    summary = request.form.get('summary', '').strip()  # Get summary, default to empty string
     notice_date = request.form['notice_date']
     
     if 'pdf_file' not in request.files:
@@ -528,7 +529,7 @@ def add_notice():
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
         db = get_db()
-        db.execute('INSERT INTO notices (title, filename, timestamp) VALUES (?, ?, ?)', (title, filename, notice_date))
+        db.execute('INSERT INTO notices (title, filename, summary, timestamp) VALUES (?, ?, ?, ?)', (title, filename, summary, notice_date))
         db.commit()
 
         flash('New notice has been successfully added!', 'success')
@@ -559,6 +560,64 @@ def delete_notice(notice_id):
     else:
         flash('Notice not found.', 'danger')
         
+    return redirect(url_for('admin_dashboard'))
+
+@app.route('/admin/edit/<int:notice_id>', methods=['GET'])
+def edit_notice(notice_id):
+    if 'logged_in' not in session:
+        return redirect(url_for('admin_login'))
+
+    db = get_db()
+    notice = db.execute('SELECT * FROM notices WHERE id = ?', (notice_id,)).fetchone()
+
+    if not notice:
+        flash('Notice not found.', 'danger')
+        return redirect(url_for('admin_dashboard'))
+
+    return render_template('admin/edit_notice.html', notice=notice)
+
+@app.route('/admin/update/<int:notice_id>', methods=['POST'])
+def update_notice(notice_id):
+    if 'logged_in' not in session:
+        return redirect(url_for('admin_login'))
+
+    db = get_db()
+    notice = db.execute('SELECT * FROM notices WHERE id = ?', (notice_id,)).fetchone()
+
+    if not notice:
+        flash('Notice not found.', 'danger')
+        return redirect(url_for('admin_dashboard'))
+
+    title = request.form['title']
+    summary = request.form.get('summary', '')
+    notice_date = request.form['notice_date']
+    
+    # Handle file upload (optional)
+    filename = notice['filename']  # Keep existing filename by default
+    if 'pdf_file' in request.files:
+        file = request.files['pdf_file']
+        if file and file.filename != '' and allowed_file(file.filename):
+            # Delete old file
+            try:
+                os.remove(os.path.join(app.config['UPLOAD_FOLDER'], notice['filename']))
+            except FileNotFoundError:
+                pass  # File doesn't exist, continue
+            
+            # Save new file
+            filename = secure_filename(file.filename)
+            # Make filename unique by adding timestamp
+            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S_')
+            filename = timestamp + filename
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+    # Update the database
+    db.execute(
+        'UPDATE notices SET title = ?, summary = ?, filename = ?, timestamp = ? WHERE id = ?',
+        (title, summary, filename, notice_date + ' 00:00:00', notice_id)
+    )
+    db.commit()
+    
+    flash('Notice has been successfully updated.', 'success')
     return redirect(url_for('admin_dashboard'))
 
 @app.route('/admin/add_gallery_image', methods=['POST'])

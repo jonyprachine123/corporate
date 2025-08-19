@@ -67,6 +67,11 @@
                             <input type="text" name="title" id="title" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                         </div>
                         <div class="mb-4">
+                            <label for="summary" class="block text-gray-700 font-medium mb-2">Notice Summary</label>
+                            <textarea name="summary" id="summary" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter a brief summary of the notice..."></textarea>
+                            <p class="text-sm text-gray-500 mt-1">Optional: Provide a brief summary that will be displayed on the notice board.</p>
+                        </div>
+                        <div class="mb-4">
                             <label for="pdf_file" class="block text-gray-700 font-medium mb-2">PDF File</label>
                             <input type="file" name="pdf_file" id="pdf_file" accept=".pdf" class="w-full text-gray-700" required>
                             <p class="text-sm text-gray-500 mt-1">Only .pdf files are accepted.</p>
@@ -87,6 +92,7 @@
                             <thead class="bg-gray-200">
                                 <tr>
                                     <th class="text-left py-3 px-4 font-semibold text-sm">Title</th>
+                                    <th class="text-left py-3 px-4 font-semibold text-sm">Summary</th>
                                     <th class="text-left py-3 px-4 font-semibold text-sm">Filename</th>
                                     <th class="text-left py-3 px-4 font-semibold text-sm">Uploaded On</th>
                                     <th class="text-left py-3 px-4 font-semibold text-sm">Actions</th>
@@ -96,17 +102,21 @@
                                 {% for notice in notices %}
                                 <tr class="border-b border-gray-200 hover:bg-gray-50">
                                     <td class="py-3 px-4">{{ notice.title }}</td>
+                                    <td class="py-3 px-4">{{ notice.summary or 'No summary' }}</td>
                                     <td class="py-3 px-4">{{ notice.filename }}</td>
                                     <td class="py-3 px-4">{{ notice.timestamp.split(' ')[0] }}</td>
                                     <td class="py-3 px-4">
-                                        <form action="{{ url_for('delete_notice', notice_id=notice.id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this notice?');">
-                                            <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded text-xs">Delete</button>
-                                        </form>
+                                        <div class="flex space-x-2">
+                                            <a href="{{ url_for('edit_notice', notice_id=notice.id) }}" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-3 rounded text-xs">Edit</a>
+                                            <form action="{{ url_for('delete_notice', notice_id=notice.id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this notice?');" class="inline">
+                                                <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded text-xs">Delete</button>
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                                 {% else %}
                                 <tr>
-                                    <td colspan="4" class="py-4 px-4 text-center text-gray-500">No notices found.</td>
+                                    <td colspan="5" class="py-4 px-4 text-center text-gray-500">No notices found.</td>
                                 </tr>
                                 {% endfor %}
                             </tbody>

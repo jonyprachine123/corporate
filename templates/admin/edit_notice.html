@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Notice - Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold text-gray-800">Edit Notice</h1>
+            <div>
+                <span class="text-gray-700 mr-4">Welcome, <strong>{{ session.username }}</strong>!</span>
+                <a href="{{ url_for('admin_logout') }}" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-8">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                <div class="mb-6 p-4 rounded-lg 
+                    {% if category == 'success' %}bg-green-100 text-green-800
+                    {% elif category == 'danger' %}bg-red-100 text-red-800
+                    {% else %}bg-blue-100 text-blue-800{% endif %}" role="alert">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <div class="mb-6">
+                <a href="{{ url_for('admin_dashboard') }}" class="text-blue-600 hover:text-blue-800 font-medium">
+                    ← Back to Dashboard
+                </a>
+            </div>
+
+            <h2 class="text-2xl font-bold mb-6 text-gray-800">Edit Notice</h2>
+            
+            <form action="{{ url_for('update_notice', notice_id=notice.id) }}" method="POST" enctype="multipart/form-data">
+                <div class="mb-4">
+                    <label for="title" class="block text-gray-700 font-medium mb-2">Notice Title</label>
+                    <input type="text" name="title" id="title" value="{{ notice.title }}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="summary" class="block text-gray-700 font-medium mb-2">Notice Summary</label>
+                    <textarea name="summary" id="summary" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter a brief summary of the notice...">{{ notice.summary or '' }}</textarea>
+                    <p class="text-sm text-gray-500 mt-1">Optional: Provide a brief summary that will be displayed on the notice board.</p>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="pdf_file" class="block text-gray-700 font-medium mb-2">PDF File</label>
+                    <div class="mb-2">
+                        <p class="text-sm text-gray-600">Current file: <strong>{{ notice.filename }}</strong></p>
+                    </div>
+                    <input type="file" name="pdf_file" id="pdf_file" accept=".pdf" class="w-full text-gray-700">
+                    <p class="text-sm text-gray-500 mt-1">Leave empty to keep the current file. Only .pdf files are accepted.</p>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="notice_date" class="block text-gray-700 font-medium mb-2">Notice Date</label>
+                    <input type="date" name="notice_date" id="notice_date" value="{{ notice.timestamp.split(' ')[0] }}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    <p class="text-sm text-gray-500 mt-1">Select the date for this notice (can be a back date).</p>
+                </div>
+                
+                <div class="flex space-x-4">
+                    <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg">Update Notice</button>
+                    <a href="{{ url_for('admin_dashboard') }}" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-6 rounded-lg">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

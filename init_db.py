@@ -7,13 +7,14 @@ cursor = connection.cursor()
 # Create the 'notices' table
 # This table will store the ID, title, and filename of each notice
 cursor.execute('''
-    CREATE TABLE IF NOT EXISTS notices (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        title TEXT NOT NULL,
-        filename TEXT NOT NULL,
-        timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
-    )
-''')
+        CREATE TABLE IF NOT EXISTS notices (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            title TEXT NOT NULL,
+            filename TEXT NOT NULL,
+            summary TEXT,
+            timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+        )
+    ''')
 
 # Create the 'users' table for admin login
 # For this example, we'll insert a default admin user.
