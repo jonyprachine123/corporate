@@ -1,7 +1,15 @@
 import os
 import sqlite3
-from flask import Flask, render_template, request, redirect, url_for, flash, session, g, send_from_directory
+from flask import Flask, render_template, request, redirect, url_for, flash, session, g, send_from_directory, make_response
 from werkzeug.utils import secure_filename
+import pandas as pd
+from reportlab.lib.pagesizes import letter, A4, landscape
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.lib.units import inch
+from reportlab.lib import colors
+from io import BytesIO
+from datetime import datetime
 
 # --- App Configuration ---
 app = Flask(__name__)
@@ -350,6 +358,143 @@ def admin_dashboard():
     gallery_images = db.execute('SELECT id, title, filename, is_active, sort_order, timestamp FROM gallery ORDER BY sort_order ASC, timestamp DESC').fetchall()
     event_registrations = db.execute('SELECT * FROM event_registrations ORDER BY registration_date DESC').fetchall()
     return render_template('admin/dashboard.html', notices=all_notices, gallery_images=gallery_images, event_registrations=event_registrations)
+
+@app.route('/admin/export/excel')
+def export_excel():
+    if 'logged_in' not in session:
+        return redirect(url_for('admin_login'))
+    
+    db = get_db()
+    event_registrations = db.execute('SELECT * FROM event_registrations ORDER BY registration_date DESC').fetchall()
+    
+    # Convert to list of dictionaries
+    data = []
+    for reg in event_registrations:
+        data.append({
+            'ID': reg['id'],
+            'Full Name': reg['full_name'],
+            'Mobile': reg['mobile_number'],
+            'Address': reg['address'],
+            'Reference': reg['reference'],
+            'Voucher': reg['voucher_number'],
+            'Status': 'Approved' if reg['is_approved'] else 'Pending',
+            'Registration Date': reg['registration_date']
+        })
+    
+    # Create DataFrame
+    df = pd.DataFrame(data)
+    
+    # Create Excel file in memory
+    output = BytesIO()
+    with pd.ExcelWriter(output, engine='openpyxl') as writer:
+        df.to_excel(writer, sheet_name='Event Registrations', index=False)
+    
+    output.seek(0)
+    
+    # Create response
+    response = make_response(output.getvalue())
+    response.headers['Content-Type'] = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    response.headers['Content-Disposition'] = f'attachment; filename=event_registrations_{datetime.now().strftime("%Y%m%d_%H%M%S")}.xlsx'
+    
+    return response
+
+@app.route('/admin/export/pdf')
+def export_pdf():
+    if 'logged_in' not in session:
+        return redirect(url_for('admin_login'))
+    
+    db = get_db()
+    event_registrations = db.execute('SELECT * FROM event_registrations ORDER BY registration_date DESC').fetchall()
+    
+    # Create PDF in memory with landscape orientation for better table fit
+    buffer = BytesIO()
+    doc = SimpleDocTemplate(buffer, pagesize=landscape(A4), leftMargin=0.5*inch, rightMargin=0.5*inch, topMargin=0.5*inch, bottomMargin=0.5*inch)
+    
+    # Get styles
+    styles = getSampleStyleSheet()
+    title_style = ParagraphStyle(
+        'CustomTitle',
+        parent=styles['Heading1'],
+        fontSize=16,
+        spaceAfter=30,
+        alignment=1  # Center alignment
+    )
+    
+    # Build content
+    content = []
+    
+    # Add title
+    title = Paragraph("Event Registrations Report", title_style)
+    content.append(title)
+    content.append(Spacer(1, 12))
+    
+    # Add generation date
+    date_para = Paragraph(f"Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}", styles['Normal'])
+    content.append(date_para)
+    content.append(Spacer(1, 20))
+    
+    # Prepare table data
+    table_data = [['ID', 'Full Name', 'Mobile', 'Address', 'Reference', 'Voucher', 'Status', 'Registration Date']]
+    
+    for reg in event_registrations:
+        # Wrap long text for better display in landscape mode
+        address = reg['address'] or ''
+        if len(address) > 60:
+            address = address[:57] + '...'
+        
+        full_name = reg['full_name'] or ''
+        if len(full_name) > 25:
+            full_name = full_name[:22] + '...'
+            
+        reference = reg['reference'] or ''
+        if len(reference) > 15:
+            reference = reference[:12] + '...'
+            
+        table_data.append([
+            str(reg['id']),
+            Paragraph(full_name, styles['Normal']),
+            reg['mobile_number'] or '',
+            Paragraph(address, styles['Normal']),
+            Paragraph(reference, styles['Normal']),
+            reg['voucher_number'] or '',
+            'Approved' if reg['is_approved'] else 'Pending',
+            reg['registration_date'].split(' ')[0] if reg['registration_date'] else ''
+        ])
+    
+    # Create table with optimized column widths for landscape A4
+    col_widths = [0.5*inch, 1.8*inch, 1.2*inch, 2.5*inch, 1.2*inch, 1.2*inch, 1*inch, 1.2*inch]
+    table = Table(table_data, colWidths=col_widths, repeatRows=1, rowHeights=None)
+    table.setStyle(TableStyle([
+        ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
+        ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
+        ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
+        ('VALIGN', (0, 0), (-1, -1), 'TOP'),
+        ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+        ('FONTSIZE', (0, 0), (-1, 0), 10),
+        ('BOTTOMPADDING', (0, 0), (-1, 0), 8),
+        ('TOPPADDING', (0, 0), (-1, 0), 8),
+        ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
+        ('FONTNAME', (0, 1), (-1, -1), 'Helvetica'),
+        ('FONTSIZE', (0, 1), (-1, -1), 8),
+        ('GRID', (0, 0), (-1, -1), 0.5, colors.black),
+        ('LEFTPADDING', (0, 0), (-1, -1), 6),
+        ('RIGHTPADDING', (0, 0), (-1, -1), 6),
+        ('TOPPADDING', (0, 1), (-1, -1), 6),
+        ('BOTTOMPADDING', (0, 1), (-1, -1), 6)
+    ]))
+    
+    content.append(table)
+    
+    # Build PDF
+    doc.build(content)
+    buffer.seek(0)
+    
+    # Create response
+    response = make_response(buffer.getvalue())
+    response.headers['Content-Type'] = 'application/pdf'
+    response.headers['Content-Disposition'] = f'attachment; filename=event_registrations_{datetime.now().strftime("%Y%m%d_%H%M%S")}.pdf'
+    
+    return response
 
 @app.route('/admin/logout')
 def admin_logout():
