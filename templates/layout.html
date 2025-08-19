@@ -370,6 +370,7 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            background-color: #1f2937; /* Dark background for letterboxing */
         }
         
         .slide.active {
@@ -380,7 +381,7 @@
         .slide img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             object-position: center center;
             display: block;
             max-width: 100%;
@@ -390,8 +391,22 @@
         /* Mobile responsive image adjustments */
         @media (max-width: 640px) {
             .slide img {
-                object-fit: cover;
+                object-fit: contain;
                 object-position: center center;
+            }
+            .slider-container {
+                height: 200px !important; /* Smaller height for mobile */
+            }
+        }
+        
+        /* Tablet responsive adjustments */
+        @media (min-width: 641px) and (max-width: 1023px) {
+            .slide img {
+                object-fit: contain;
+                object-position: center center;
+            }
+            .slider-container {
+                height: 350px !important; /* Medium height for tablets */
             }
         }
         
@@ -399,13 +414,21 @@
         .slider-container {
             width: 100%;
             max-width: 100%;
+            background-color: #1f2937; /* Consistent background */
         }
         
-        /* Improve image quality on different screen sizes */
+        /* Desktop and large screen optimizations */
         @media (min-width: 1024px) {
             .slide img {
-                object-fit: cover;
+                object-fit: contain;
                 object-position: center center;
+            }
+        }
+        
+        /* Ultra-wide screen adjustments */
+        @media (min-width: 1920px) {
+            .slider-container {
+                max-height: 700px;
             }
         }
         
